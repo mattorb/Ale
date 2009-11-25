@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 import sys
 import os
+from aleconfig import *
+from utils import *
 from ale.base import Command
 
 class InstallGaeCommand(Command):

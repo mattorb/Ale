@@ -7,6 +7,9 @@ from ale.base import Command
 aleroot = os.path.dirname( os.path.realpath(__file__) )
 installedroot = os.path.realpath(os.path.join(os.path.dirname( os.path.realpath(__file__) ), '..'))
 
+def alePath(dir):
+    return os.path.join(installedroot, dir)
+
 def findCommandFile(commandName):
     files = []
     command_file_pattern = re.compile(r'\.ale/installed.*commands/%s\.py$' % commandName.lower())

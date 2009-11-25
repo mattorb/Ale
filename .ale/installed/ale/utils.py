@@ -8,3 +8,9 @@ def find(f, seq):
     """Return first item in sequence where f(item) == True."""
     for it in (item for item in seq if f(item)):
         return it
+
+def mkdir(dirname):
+    if not os.path.isdir(dirname):
+        os.mkdir(dirname)
+
+
