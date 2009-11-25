@@ -4,27 +4,27 @@ import sys, os, logging, utils, re
 
 from ale.base import Command
 
-alepluginroot = os.path.dirname( os.path.realpath(__file__) )
+aleroot = os.path.dirname( os.path.realpath(__file__) )
+installedroot = os.path.realpath(os.path.join(os.path.dirname( os.path.realpath(__file__) ), '..'))
 
 def findCommandFile(commandName):
     files = []
-    command_file_pattern = re.compile('\.ale/installed.*commands/%s\.py$' % commandName.lower())
+    command_file_pattern = re.compile(r'\.ale/installed.*commands/%s\.py$' % commandName.lower())
 
-    for (dp, dn, fn) in os.walk(alepluginroot):
+    for (dp, dn, fn) in os.walk(installedroot):
         for file in fn:
             filename = os.path.join(dp, file)
-
             if command_file_pattern.search(filename) and not '__' in filename:
                 return filename
-    return None
+
+    raise ImportError, 'Could not locate command %s' % commandName
 
 def importCommand(commandName):
     try:
         fullPathToCommand = findCommandFile(commandName)
         justModule = re.sub('.*installed/(?P<mod>.*)\.py$', '\g<mod>', fullPathToCommand)
         dottedModule = re.sub(r'[\\/]', '.', justModule)
-        logging.debug('Selected %s' % dottedModule)
-        print 'running %s (from %s)' % (dottedModule, fullPathToCommand)
+        logging.debug('running %s (from %s)' % (dottedModule, fullPathToCommand))
         module = __import__(dottedModule, globals(), locals(), 'ale')
     except ImportError, e:
         logging.debug(e)
@@ -47,7 +47,7 @@ class Main():
     def execute(self, args=None):
 
         logging.basicConfig(stream=sys.stdout, level=logging.INFO, format='%(levelname)s %(message)s')
-        logging.debug('Running from %s' % alepluginroot)
+        logging.debug('Running from %s' % aleroot)
 
         if args[1:]:
             executeCommand(args[1], args[2:])
