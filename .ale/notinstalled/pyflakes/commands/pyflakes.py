@@ -8,7 +8,7 @@ from ale.base import Command
 
 class PyFlakesCommand(Command):
     name = 'pyflakes'
-    shorthelp = 'run this to install gae to .ale'
+    shorthelp = 'run pyflakes (lint tool) against all the python files in the project'
 
     def execute(self, args=None):
         pyflakesversion = 'pyflakes-0.3.0'
@@ -24,5 +24,5 @@ class PyFlakesCommand(Command):
         extractPath = os.path.join(alePath('installed'), pyflakesversion)
         mkdir(extractPath)
 
-        #todo: move the zip to the parent
-        os.system('gzip -dc %s | tar xf -' % (localDlPath, extractPath))
+        #todo: move %pyflakesversion% to alePath('installed/')
+        os.system('gzip -dc %s | tar xf -' % localDlPath)
