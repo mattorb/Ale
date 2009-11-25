@@ -6,5 +6,5 @@ import os
 class Command(object):
     name = ''
     shorthelp = ''
-    def execute():
+    def execute(self, args):
         raise

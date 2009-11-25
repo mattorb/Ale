@@ -14,10 +14,12 @@ class InstallGaeCommand(Command):
         gaefile = 'google_appengine_1.2.7.zip'
         gaeversion = 'google_appengine_1.2.7'
         remotePath = '%s%s' % ('http://googleappengine.googlecode.com/files/', gaefile)
+        mkdir(alePath('tmp'))
         localDlPath = os.path.join(alePath('tmp'), gaefile)
-        extractPath = os.path.join(alePath('installed/%s' % gaeversion))
+        curlCmd = 'curl -o %s %s' % (localDlPath, remotePath)
+        print curlCmd
+        os.system(curlCmd)
 
-        os.system('curl -o %s %s' % (localDlPath, remotePath))
-
+        extractPath = os.path.join(alePath('installed'), gaeversion)
         mkdir(extractPath)
         os.system('unzip -d %s %s' % (extractPath, localDlPath))

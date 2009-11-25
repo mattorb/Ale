@@ -36,6 +36,9 @@ class InstalledCommand(Command):
         from ale.base import Command
         commandList = Command.__subclasses__()
 
+        print 'Syntax:  ale [command]'
+        print 'Available commands:'
+
         for command in commandList:
             instance = command()
             print '%-20.20s %s' % (instance.name, instance.shorthelp)

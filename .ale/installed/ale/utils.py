@@ -13,4 +13,3 @@ def mkdir(dirname):
     if not os.path.isdir(dirname):
         os.mkdir(dirname)
 
-
