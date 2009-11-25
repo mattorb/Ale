@@ -2,8 +2,10 @@
 # encoding: utf-8
 import sys, os
 
-if not '/Volumes/subspace/ale2/.ale/installed/' in sys.path:
-    sys.path.insert(0, '/Volumes/subspace/ale2/.ale/installed/')
+installedPath = os.path.join(os.path.realpath(os.curdir), '.ale/installed')
+
+if not installedPath in sys.path:
+    sys.path.insert(0, installedPath)
 
 from ale import core
 

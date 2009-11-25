@@ -2,14 +2,14 @@ import sys, os, re, logging
 
 from ale.base import Command
 
-current_path = os.path.realpath(os.curdir)
+notinstalledPath = os.path.join(os.path.realpath(os.curdir), '.ale/notinstalled')
 
 class AvailableCommand(Command):
     name = 'available'
     shorthelp = 'list commands available for install'
             
     def module_name_part(self, filename):
-        mod_name =  filename[len(current_path) + 1:-3].replace('/', '.').replace('\\', '.')
+        mod_name =  filename[len(notinstalledPath) + 1:-3].replace('/', '.').replace('\\', '.')
         return re.sub('.ale.notinstalled.', '', mod_name)
 
     def package_name_part(self, module_name):
@@ -19,7 +19,7 @@ class AvailableCommand(Command):
         files = []
         pattern = re.compile('\.ale/notinstalled.*commands/.*\.py$')
 
-        for (dp, dn, fn) in os.walk(current_path):
+        for (dp, dn, fn) in os.walk(notinstalledPath):
             for file in fn:
                 filename = os.path.join(dp, file)
 
@@ -29,11 +29,11 @@ class AvailableCommand(Command):
         modules = []
         module_names = map(self.module_name_part, files)
 
-        if not '/Volumes/subspace/ale2/.ale/notinstalled/' in sys.path:
-            sys.path.insert(0, '/Volumes/subspace/ale2/.ale/notinstalled/')
+        if not notinstalledPath in sys.path:
+            sys.path.insert(0, notinstalledPath)
 
         for module_name in module_names:
-            logging.debug('Importing mod [%s] as %s' % (module_name, self.package_name_part(module_name)))
+            logging.debug('Importing mod %s as %s' % (module_name, self.package_name_part(module_name)))
             module = __import__(module_name, globals(), locals(), [self.package_name_part(module_name)])
             modules += [module]
 

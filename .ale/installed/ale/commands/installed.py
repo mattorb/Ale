@@ -2,14 +2,14 @@ import sys, os, re, logging
 
 from ale.base import Command
 
-current_path = os.path.realpath(os.curdir)
+installedPath = os.path.join(os.path.realpath(os.curdir), '.ale/installed')
 
 class InstalledCommand(Command):
     name = 'installed'
     shorthelp = 'list commands currently installed'
             
     def module_name_part(self, filename):
-        mod_name =  filename[len(current_path) + 1:-3].replace('/', '.').replace('\\', '.')
+        mod_name =  filename[len(installedPath) + 1:-3].replace('/', '.').replace('\\', '.')
         return re.sub('.ale.installed.', '', mod_name)
 
     def package_name_part(self, module_name):
@@ -19,7 +19,7 @@ class InstalledCommand(Command):
         files = []
         pattern = re.compile('\.ale/installed.*commands/.*\.py$')
 
-        for (dp, dn, fn) in os.walk(current_path):
+        for (dp, dn, fn) in os.walk(installedPath):
             for file in fn:
                 filename = os.path.join(dp, file)
 
