@@ -1,15 +1,31 @@
 #!/usr/bin/env python
 # encoding: utf-8
-import sys
-import os
-
-import logging, utils
+import sys, os, logging, utils, re
 
 from ale.base import Command
 
-def importCommand(command):
+alepluginroot = os.path.dirname( os.path.realpath(__file__) )
+
+def findCommandFile(commandName):
+    files = []
+    command_file_pattern = re.compile('\.ale/installed.*commands/%s\.py$' % commandName.lower())
+
+    for (dp, dn, fn) in os.walk(alepluginroot):
+        for file in fn:
+            filename = os.path.join(dp, file)
+
+            if command_file_pattern.search(filename) and not '__' in filename:
+                return filename
+    return None
+
+def importCommand(commandName):
     try:
-        module = __import__('ale.commands.%s' % command, globals(), locals(), 'ale')
+        fullPathToCommand = findCommandFile(commandName)
+        justModule = re.sub('.*installed/(?P<mod>.*)\.py$', '\g<mod>', fullPathToCommand)
+        dottedModule = re.sub(r'[\\/]', '.', justModule)
+        logging.debug('Selected %s' % dottedModule)
+        print 'running %s (from %s)' % (dottedModule, fullPathToCommand)
+        module = __import__(dottedModule, globals(), locals(), 'ale')
     except ImportError, e:
         logging.debug(e)
         raise e
@@ -29,7 +45,6 @@ def executeCommand(command, args=None):
 
 class Main():
     def execute(self, args=None):
-        alepluginroot = os.path.dirname( os.path.realpath(__file__) )
 
         logging.basicConfig(stream=sys.stdout, level=logging.INFO, format='%(levelname)s %(message)s')
         logging.debug('Running from %s' % alepluginroot)
