@@ -16,7 +16,7 @@ def importCommand(command):
     
     return module
 
-def executeCommand(command):
+def executeCommand(command, args=None):
     try:
         module = importCommand(command)
         commandInstances = [commandClass() for commandClass in Command.__subclasses__()]
@@ -25,17 +25,16 @@ def executeCommand(command):
         logging.error('Unknown command: %s' % command)
         return
 
-    commandToExec.execute()
+    commandToExec.execute(args)
 
 class Main():
-    def execute(self):
+    def execute(self, args=None):
         alepluginroot = os.path.dirname( os.path.realpath(__file__) )
 
         logging.basicConfig(stream=sys.stdout, level=logging.INFO, format='%(levelname)s %(message)s')
         logging.debug('Running from %s' % alepluginroot)
 
-        if sys.argv[1:]:
-            for arg in sys.argv[1:]:
-                executeCommand(arg)
+        if args[1:]:
+            executeCommand(args[1], args[2:])
         else:
             executeCommand('installed')

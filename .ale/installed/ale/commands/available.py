@@ -15,7 +15,7 @@ class AvailableCommand(Command):
     def package_name_part(self, module_name):
         return module_name.split('.')[0]
             
-    def execute(self):
+    def execute(self, args=None):
         files = []
         pattern = re.compile('\.ale/notinstalled.*commands/.*\.py$')
 

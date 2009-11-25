@@ -10,4 +10,4 @@ if not installedPath in sys.path:
 from ale import core
 
 if __name__ == '__main__':
-    core.Main().execute()
+    core.Main().execute(args=sys.argv)
