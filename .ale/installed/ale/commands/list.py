@@ -5,7 +5,7 @@ from ale.base import Command
 installedPath = os.path.join(os.path.realpath(os.curdir), '.ale/installed')
 
 class InstalledCommand(Command):
-    name = 'installed'
+    name = 'list'
     shorthelp = 'list commands currently installed'
             
     def module_name_part(self, filename):

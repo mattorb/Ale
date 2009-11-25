@@ -37,4 +37,4 @@ class Main():
         if args[1:]:
             executeCommand(args[1], args[2:])
         else:
-            executeCommand('installed')
+            executeCommand('list')

@@ -6,8 +6,8 @@ import fnmatch, shutil
 installedPath = os.path.join(os.path.realpath(os.curdir), '.ale/installed')
 
 class UnInstall(Command):
-    name = 'uninstall'
-    shorthelp = 'uninstall <command>'
+    name = 'remove'
+    shorthelp = 'remove <command>    Uninstalls a command'
             
     def execute(self, args=None):
         if not args:
