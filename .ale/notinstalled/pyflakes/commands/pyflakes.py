@@ -14,6 +14,6 @@ class PyFlakesCommand(Command):
         print 'should run pyflakes'
 
     def install(self, args=None):
-        extractPath = os.path.join(alePath('installed'), 'pyflakes-0.3.0')
+        extractPath = os.path.join(os.path.join(alePath('installed'), 'pyflakes'), 'pkgs')
         
         downloadAndExtract('http://pypi.python.org/packages/source/p/pyflakes/pyflakes-0.3.0.tar.gz', extractPath)

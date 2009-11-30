@@ -9,7 +9,7 @@ from ale.base import Command
 gaefile = 'google_appengine_1.2.7.zip'
 gaeversion = 'google_appengine_1.2.7'
 remotePath = '%s%s' % ('http://googleappengine.googlecode.com/files/', gaefile)
-extractPath = os.path.join(alePath('installed'), gaeversion)
+extractPath = os.path.join(os.path.join(alePath('installed'), 'gae'), 'pkgs')
 
 class GaeCommand(Command):
     name = 'gae'
@@ -22,14 +22,7 @@ class GaeCommand(Command):
             print 'unknown command: %s' % args[0]
 
     def install(self, args=None):
-        mkdir(alePath('tmp'))
-        localDlPath = os.path.join(alePath('tmp'), gaefile)
-        curlCmd = 'curl -o %s %s' % (localDlPath, remotePath)
-        print curlCmd
-        os.system(curlCmd)
-
-        mkdir(extractPath)
-        os.system('unzip -d %s %s' % (extractPath, localDlPath))
+        downloadAndExtract(remotePath, extractPath)
         
 #class ServerCommand(Command):
 #    name = 'server'
