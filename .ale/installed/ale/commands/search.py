@@ -40,6 +40,8 @@ class AvailableCommand(Command):
         from ale.base import Command
         commandList = Command.__subclasses__()
 
+        print 'Commands available for install:'
+
         for command in commandList:
             instance = command()
             if instance.name != 'search': # ourself is in memory when __subclassess__ was called
