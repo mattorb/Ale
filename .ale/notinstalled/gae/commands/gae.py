@@ -6,11 +6,14 @@ from aleconfig import *
 from utils import *
 from ale.base import Command
 
-class InstallGaeCommand(Command):
+class GaeCommand(Command):
     name = 'gae'
     shorthelp = 'run this to install gae and some helper commands to .ale'
 
     def execute(self, args=None):
+        print 'gae command'
+
+    def install(self, args=None):
         gaefile = 'google_appengine_1.2.7.zip'
         gaeversion = 'google_appengine_1.2.7'
         remotePath = '%s%s' % ('http://googleappengine.googlecode.com/files/', gaefile)
@@ -23,3 +26,4 @@ class InstallGaeCommand(Command):
         extractPath = os.path.join(alePath('installed'), gaeversion)
         mkdir(extractPath)
         os.system('unzip -d %s %s' % (extractPath, localDlPath))
+        

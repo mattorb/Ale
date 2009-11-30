@@ -35,7 +35,7 @@ def importCommand(commandName):
     
     return module
 
-def executeCommand(command, args=None):
+def getCommandInstance(command):
     try:
         module = importCommand(command)
         commandInstances = [commandClass() for commandClass in Command.__subclasses__()]
@@ -43,8 +43,11 @@ def executeCommand(command, args=None):
     except ImportError, e:
         logging.error('Unknown command: %s' % command)
         return
+    
+    return commandToExec
 
-    commandToExec.execute(args)
+def executeCommand(command, args=None):
+    getCommandInstance(command).execute(args)
 
 class Main():
     def execute(self, args=None):

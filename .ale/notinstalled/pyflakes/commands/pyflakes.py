@@ -11,6 +11,9 @@ class PyFlakesCommand(Command):
     shorthelp = 'run pyflakes (lint tool) against all the python files in the project'
 
     def execute(self, args=None):
+        print 'should run pyflakes'
+
+    def install(self, args=None):
         pyflakesversion = 'pyflakes-0.3.0'
         pyflakesFile = '%s.tar.gz' % pyflakesversion
         
