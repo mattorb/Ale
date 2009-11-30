@@ -17,12 +17,15 @@ class PyautotestCommand(Command):
     def execute(self, args=None):
         modipydroot = join(join(join(alePath('installed'), 'pyautotest'), 'pkgs'),'ishikawa-modipyd-4ebdf28')
         
-        arg = '-v' if not args else args[0]
+        arg = '.' if not args else args[0]
         
         command = join(modipydroot, "bin/pyautotest")
         print 'Executing %s %s' % (command, arg)
+        print 'Modify a source file to trigger any dependent tests to re-execute'
             
-        p = Popen([command, arg], env={"PYTHONPATH": modipydroot})  #todo: just yield a generator or get all .py files
+        commandwithargs = [command, arg] if arg else [command]
+            
+        p = Popen(commandwithargs, env={"PYTHONPATH": '%s:%s' % (modipydroot, '.')})  #todo: just yield a generator or get all .py files
         sts = os.waitpid(p.pid, 0)[1]
         
         if sts == 0:
