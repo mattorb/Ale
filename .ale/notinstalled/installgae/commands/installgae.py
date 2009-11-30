@@ -8,7 +8,7 @@ from ale.base import Command
 
 class InstallGaeCommand(Command):
     name = 'installgae'
-    shorthelp = 'run this to install gae to .ale'
+    shorthelp = 'run this to install gae and some helper commands to .ale'
 
     def execute(self, args=None):
         gaefile = 'google_appengine_1.2.7.zip'
