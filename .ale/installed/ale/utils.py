@@ -1,9 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
-import sys
 import os
-from shutil import move
-from aleconfig import *
+from aleconfig import alePath
 import tarfile
 import zipfile
 import gzip as gzipfile
@@ -17,6 +15,20 @@ def find(f, seq):
 def mkdir(dirname):
     if not os.path.isdir(dirname):
         os.mkdir(dirname)
+        
+def gitignore(filePattern):
+    currentIgnoredPatterns = ()
+    
+    if os.path.exists('.gitignore'):
+        gitignoreForRead = open('.gitignore', 'r')
+        currentIgnoredPatterns = set(map(str.strip, gitignoreForRead))
+        gitignoreForRead.close()
+    
+    if not filePattern in currentIgnoredPatterns:
+        print 'Adding pattern: [%s] to .gitignore' % filePattern
+        destFile = open('.gitignore', 'a')
+        destFile.write(filePattern + '\n')
+        destFile.close()
 
 def downloadAndExtract(remotePath, extractPath):
     mkdir(alePath('tmp'))
@@ -33,6 +45,7 @@ def downloadAndExtract(remotePath, extractPath):
         unzip(localDlPath, extractPath)
 
 def untar(src=None, destdir=None):
+    print 'Extracting %s to %s' % (src, destdir)
     _src = os.path.normpath(src)
     _destdir = os.path.normpath(destdir)
 

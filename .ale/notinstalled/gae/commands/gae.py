@@ -35,3 +35,5 @@ class GaeCommand(Command):
         downloadAndExtract(remotePath, extractPath)
         os.system('chmod +x %s' % join(join(extractPath, 'google_appengine'), 'dev_appserver.py'))
         os.system('chmod +x %s' % join(join(extractPath, 'google_appengine'), 'appcfg.py'))
+        gitignore('*.pyc')
+        gitignore('.DS_Store')

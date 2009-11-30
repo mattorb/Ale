@@ -2,17 +2,31 @@
 # -*- coding: utf-8 -*-
 import sys
 import os
+from os.path import join as join
 from aleconfig import *
 from utils import *
 from ale.base import Command
+from subprocess import Popen
 
 class PyFlakesCommand(Command):
     name = 'pyflakes'
     shorthelp = 'run pyflakes (lint tool) against all the python files in the project'
 
     def execute(self, args=None):
-        print 'should run pyflakes'
-
+        prevCwd = os.getcwd()
+        pyflakesroot = join(join(join(alePath('installed'), 'pyflakes'), 'pkgs'),'pyflakes-0.3.0')
+        
+        command = join(pyflakesroot, "bin/pyflakes")
+        print 'Executing %s %s' % (command, args[0])
+            
+        p = Popen([command, args[0]], env={"PYTHONPATH": pyflakesroot})  #todo: just yield a generator or get all .py files
+        sts = os.waitpid(p.pid, 0)[1]
+        
+        if sts == 0:
+            print 'SUCCESS'
+        else:
+            print 'FAILED!'
+        
     def install(self, args=None):
         extractPath = os.path.join(os.path.join(alePath('installed'), 'pyflakes'), 'pkgs')
         
