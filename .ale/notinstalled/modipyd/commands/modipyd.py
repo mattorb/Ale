@@ -8,9 +8,9 @@ from utils import *
 from ale.base import Command
 from subprocess import Popen
 
-class PyFlakesCommand(Command):
-    name = 'pyflakes'
-    shorthelp = 'run pyflakes (lint tool) against the project or pyflakes [dir]'
+class ModipydCommand(Command):
+    name = 'modipyd'
+    shorthelp = 'run modipyd (continuous test runner) against the project or modipyd [dir]'
 
     def execute(self, args=None):
         prevCwd = os.getcwd()
@@ -31,5 +31,5 @@ class PyFlakesCommand(Command):
         
     def install(self, args=None):
         extractPath = os.path.join(os.path.join(alePath('installed'), 'pyflakes'), 'pkgs')
-        
-        downloadAndExtract('http://pypi.python.org/packages/source/p/pyflakes/pyflakes-0.3.0.tar.gz', extractPath)
+        dlFile = download('http://github.com/ishikawa/modipyd/zipball/release-1-0', 'ishikawa-modipyd.zip')
+        extract(dlFile, extractPath)

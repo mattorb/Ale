@@ -30,19 +30,29 @@ def gitignore(filePattern):
         destFile.write(filePattern + '\n')
         destFile.close()
 
-def downloadAndExtract(remotePath, extractPath):
+def download(remotePath, localFileNameInTmpDir=None):
     mkdir(alePath('tmp'))
-    (head, tail) = os.path.split(remotePath)
-    localDlPath = os.path.join(alePath('tmp'), tail)
-    curlCmd = 'curl -o %s %s' % (localDlPath, remotePath)
-    os.system(curlCmd)
 
-    print remotePath[-7:]
-    if remotePath[-7:] == '.tar.gz':
-        gunzip(localDlPath, localDlPath[:-3]) # extract the tar
-        untar(localDlPath[:-3], extractPath)
+    if not localFileNameInTmpDir:
+        (head, tail) = os.path.split(remotePath)
+        localDlPath = os.path.join(alePath('tmp'), tail)
     else:
-        unzip(localDlPath, extractPath)
+        localDlPath = os.path.join(alePath('tmp'), localFileNameInTmpDir)
+    
+    curlCmd = 'curl -L -o %s %s' % (localDlPath, remotePath)
+    os.system(curlCmd)
+    return localDlPath
+
+def extract(srcFile, destPath):
+    if srcFile[-7:] == '.tar.gz':
+        gunzip(srcFile, srcFile[:-3]) # extract the tar
+        untar(srcFile[:-3], destPath)
+    else:
+        unzip(srcFile, destPath)
+
+def downloadAndExtract(remotePath, extractPath):
+    localDlPath = download(remotePath)
+    extract(localDlPath, extractPath)
 
 def untar(src=None, destdir=None):
     print 'Extracting %s to %s' % (src, destdir)
