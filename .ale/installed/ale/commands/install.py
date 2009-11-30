@@ -23,7 +23,7 @@ class Install(Command):
         
         instance = getCommandInstance(command)
         
-        if hasattr('install', instance):
+        if hasattr(instance, 'install'):
             instance.install()
         
 
