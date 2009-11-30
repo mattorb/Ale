@@ -16,10 +16,12 @@ class PyFlakesCommand(Command):
         prevCwd = os.getcwd()
         pyflakesroot = join(join(join(alePath('installed'), 'pyflakes'), 'pkgs'),'pyflakes-0.3.0')
         
+        arg = '.' if not args else args[0]
+        
         command = join(pyflakesroot, "bin/pyflakes")
-        print 'Executing %s %s' % (command, args[0])
+        print 'Executing %s %s' % (command, arg)
             
-        p = Popen([command, args[0]], env={"PYTHONPATH": pyflakesroot})  #todo: just yield a generator or get all .py files
+        p = Popen([command, arg], env={"PYTHONPATH": pyflakesroot})  #todo: just yield a generator or get all .py files
         sts = os.waitpid(p.pid, 0)[1]
         
         if sts == 0:
