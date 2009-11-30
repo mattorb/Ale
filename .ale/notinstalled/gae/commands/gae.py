@@ -28,14 +28,14 @@ class GaeCommand(Command):
         mkdir(extractPath)
         os.system('unzip -d %s %s' % (extractPath, localDlPath))
         
-class ServerCommand(Command):
-    name = 'server'
-    shorthelp = 'start stop local dev_appserver for gae:  server [start/stop]'
+#class ServerCommand(Command):
+#    name = 'server'
+#    shorthelp = 'start stop local dev_appserver for gae:  server [start/stop]'
 
-    def execute(self, args=None):
-        if args[0].lower() != 'start':
-            print 'Unknown app name %s' % args[0]
-            return
-            
-        if args[0].lower() == 'start':
-            system('%s/dev_appserver.sh .' % extractPath)
+#    def execute(self, args=None):
+#        if args[0].lower() != 'start':
+#            print 'Unknown app name %s' % args[0]
+#            return
+#            
+#        if args[0].lower() == 'start':
+#            system('%s/dev_appserver.sh .' % extractPath)
