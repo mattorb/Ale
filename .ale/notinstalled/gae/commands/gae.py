@@ -16,7 +16,10 @@ class GaeCommand(Command):
     shorthelp = 'run this to install gae and some helper commands to .ale'
 
     def execute(self, args=None):
-        print 'gae command'
+        if args[0].lower() == 'start':
+            os.system('%s/google_appengine/dev_appserver.py .' % extractPath)
+        else:
+            print 'unknown command: %s' % args[0]
 
     def install(self, args=None):
         mkdir(alePath('tmp'))
@@ -37,5 +40,3 @@ class GaeCommand(Command):
 #            print 'Unknown app name %s' % args[0]
 #            return
 #            
-#        if args[0].lower() == 'start':
-#            system('%s/dev_appserver.sh .' % extractPath)
