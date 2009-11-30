@@ -5,6 +5,7 @@ import os
 from shutil import move
 from aleconfig import *
 import tarfile
+import zipfile
 import gzip as gzipfile
 
 # just here until we move everything up to python 2.6 or 3.0
@@ -19,11 +20,13 @@ def mkdir(dirname):
 
 def downloadAndExtract(remotePath, extractPath):
     mkdir(alePath('tmp'))
-    localDlPath = os.path.join(alePath('tmp'), 'tmp.tar.gz')
+    (head, tail) = os.path.split(remotePath)
+    localDlPath = os.path.join(alePath('tmp'), tail)
     curlCmd = 'curl -o %s %s' % (localDlPath, remotePath)
     os.system(curlCmd)
 
-    if remotePath[:-7] == '.tar.gz':
+    print remotePath[-7:]
+    if remotePath[-7:] == '.tar.gz':
         gunzip(localDlPath, localDlPath[:-3]) # extract the tar
         untar(localDlPath[:-3], extractPath)
     else:
@@ -47,6 +50,7 @@ def untar(src=None, destdir=None):
     os.chdir(prevCwd)
 
 def gunzip(src, destfile=None, destdir=None):
+    print 'Extracting %s to %s' % (src, destfile if destfile else destdir)
     _src = os.path.normpath(src)
 
     if destfile is not None:
@@ -70,6 +74,7 @@ def gunzip(src, destfile=None, destdir=None):
     destFile.close()
     
 def unzip(src, destdir):
+    print 'Extracting %s to %s' % (src, destdir)
     _src = os.path.normpath(src)
     _destdir = os.path.normpath(destdir)
 
@@ -82,7 +87,8 @@ def unzip(src, destdir):
         (head, tail) = os.path.split(path)
         if head and not os.path.exists(head):
             os.makedirs(head)
-        destfile = open(path, 'w')
-        destfile.write(zipFile.read(name))
-        destfile.close()
+        if tail: # not there when it's just a directory
+            destfile = open(path, 'w')
+            destfile.write(zipFile.read(name))
+            destfile.close()
     zipFile.close()
