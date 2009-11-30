@@ -7,7 +7,7 @@ from utils import *
 from ale.base import Command
 
 class InstallGaeCommand(Command):
-    name = 'installgae'
+    name = 'gae'
     shorthelp = 'run this to install gae and some helper commands to .ale'
 
     def execute(self, args=None):
