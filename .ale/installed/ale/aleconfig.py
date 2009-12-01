@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # encoding: utf-8
-import sys
 import os
 
 aleroot = os.path.realpath(os.path.join(os.path.dirname( os.path.realpath(__file__) ), '../..'))

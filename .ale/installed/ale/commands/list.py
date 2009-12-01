@@ -1,4 +1,4 @@
-import sys, os, re, logging
+import os, re, logging
 
 from ale.base import Command
 

@@ -1,10 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-import sys
 import os
 from os.path import join as join
-from aleconfig import *
-from utils import *
+from utils import downloadAndExtract, gitignore
+from ale.aleconfig import alePath
 from ale.base import Command
 
 from subprocess import Popen

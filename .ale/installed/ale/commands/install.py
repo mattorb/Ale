@@ -1,7 +1,7 @@
-import sys, os, re, logging
+import os, logging
 
 from ale.base import Command
-import fnmatch, shutil
+import shutil
 from ale.core import getCommandInstance
 
 notinstalledPath = os.path.join(os.path.realpath(os.curdir), '.ale/notinstalled')
