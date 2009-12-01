@@ -19,7 +19,8 @@ class GaeCommand(Command):
 
     def execute(self, args=None):
         if args and args[0].lower() == 'start':
-            p = Popen('%s/google_appengine/dev_appserver.py .' % extractPath, shell=True)
+            #--allow_skipped_files shouldn't be necesary, but don't have another work around yet...need a patch??
+            p = Popen('%s/google_appengine/dev_appserver.py --allow_skipped_files .' % extractPath, shell=True)
             import time
             time.sleep(4) #todo: just do a fetch ourself to check when it has finished coming up...?
             Popen("open" + " http://localhost:8080", shell=True)
