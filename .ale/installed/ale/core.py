@@ -41,13 +41,17 @@ def getCommandInstance(command):
         commandInstances = [commandClass() for commandClass in Command.__subclasses__()]
         commandToExec = utils.find(lambda installedCommand: installedCommand.name == command, commandInstances)
     except ImportError, e:
-        logging.error('Unknown command: %s' % command)
+        logging.error('Unknown command: %s.' % command)
+        print 'Search available commands with "ale search", install new command with "ale install <command>"'
         return
     
     return commandToExec
 
 def executeCommand(command, args=None):
-    getCommandInstance(command).execute(args)
+    instance  = getCommandInstance(command)
+    
+    if instance:
+        instance.execute(args)
 
 class Main():
     def execute(self, args=None):
