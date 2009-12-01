@@ -22,6 +22,6 @@ class DjangoCommand(Command):
 
     def install(self, args=None):
         downloadAndExtract(remotePath, extractPath)
-        system('mv %s/* .' % join(extractPath, 'app-engine-patch-sample'))
+        os.system('mv %s/* .' % join(extractPath, 'app-engine-patch-sample'))
   
         
