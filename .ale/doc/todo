@@ -1,0 +1,13 @@
+- NOSE GAE?
+- test/http recording tools/makrs?
+
+- jslint -- need generator?
+- pythontidy -- need generator?
+
+- convert sthng to __doc__
+
+- MD5 check downloads
+
+resolve namespace/multicommand ambiguity issues (installing 'test' installs test+coverage)
+
+when showing paths, take away the absolute info for parents of the relative.
