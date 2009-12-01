@@ -16,4 +16,7 @@ class UnInstall(Command):
         command = args[0]
         sourceTree = os.path.join(installedPath, command)
         print 'Uninstalling, deleting %s' % (sourceTree)
-        shutil.rmtree(sourceTree)
+        if not os.path.exists(sourceTree):
+            logging.error('Could not find installed command: %s' % command)
+        else:
+            shutil.rmtree(sourceTree)

@@ -25,8 +25,14 @@ class GaeCommand(Command):
             time.sleep(4) #todo: just do a fetch ourself to check when it has finished coming up...?
             Popen("open" + " http://localhost:8080", shell=True)
             sts = os.waitpid(p.pid, 0)[1]
+        elif args and args[0].lower() == 'deploy':
+            #todo: check for uncomitted changes and offer to commit them
+            os.system('%s/google_appengine/appcfg.py update .' % extractPath)
         else:
-            print 'unknown command: %s' % args[0]
+            if args:
+                print 'unknown command: %s' % args[0]
+            else:
+                print 'try "ale gae start"'
 
     def install(self, args=None):
         downloadAndExtract(remotePath, extractPath)
