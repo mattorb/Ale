@@ -14,7 +14,7 @@ extractPath = join(join(join(alePath('installed'), 'django'), 'pkgs'), djangover
 class DjangoCommand(Command):
     name = 'django'
 
-    shorthelp = 'Experimental: django app engine patch.  Installs to current project -- overwrites!  careful!'
+    shorthelp = 'Experimental: django app engine patch.  Install sample project to currentdirectory -- overwrites stuff!  careful!'
 
     def execute(self, args=None):
         print 'Insert python code to do whatever the task needs to do.  Take a look at some of the other tasks (**/commands/*.py) for guidance.'
@@ -22,7 +22,7 @@ class DjangoCommand(Command):
 
     def install(self, args=None):
         downloadAndExtract(remotePath, extractPath)
-        os.system('mv %s/* .' % join(extractPath, 'app-engine-patch-sample'))
+        os.system('mv -i %s/* .' % join(extractPath, 'app-engine-patch-sample'))
         os.system('chmod +x manage.py')
   
         
