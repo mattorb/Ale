@@ -20,9 +20,8 @@ class GaeCommand(Command):
     def execute(self, args=None):
         if args and args[0].lower() == 'start':
             p = Popen('%s/google_appengine/dev_appserver.py .' % extractPath, shell=True)
-#            os.system('%s/google_appengine/dev_appserver.py .' % extractPath)
             import time
-            time.sleep(2)
+            time.sleep(4) #todo: just do a fetch ourself to check when it has finished coming up...?
             Popen("open" + " http://localhost:8080", shell=True)
             sts = os.waitpid(p.pid, 0)[1]
         else:

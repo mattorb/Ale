@@ -78,4 +78,4 @@ handlers:
   script: helloworld.py        
 """)
                     FILE.close()             
-            logging.info('All Done!   Run "dev_appserver ." to start the local server, then browse to http://localhost:8080   Webapp documentation is at http://code.google.com/appengine/docs/python/gettingstarted/usingwebapp.html')
+            logging.info('SUCCESS')
