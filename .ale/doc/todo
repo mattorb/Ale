@@ -11,3 +11,6 @@
 resolve namespace/multicommand ambiguity issues (installing 'test' installs test+coverage)
 
 when showing paths, take away the absolute info for parents of the relative.
+
+pyflakes should exclude .ale/ by default -- appengine violates all kinds of rules.
+
