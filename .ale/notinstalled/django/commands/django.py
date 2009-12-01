@@ -23,5 +23,6 @@ class DjangoCommand(Command):
     def install(self, args=None):
         downloadAndExtract(remotePath, extractPath)
         os.system('mv %s/* .' % join(extractPath, 'app-engine-patch-sample'))
+        os.system('chmod +x manage.py')
   
         
