@@ -1,0 +1,19 @@
+*** cover_old.py	2009-11-30 20:12:01.000000000 -0600
+--- cover.py	2009-11-30 20:12:13.000000000 -0600
+***************
+*** 180,186 ****
+                      for name, module in sys.modules.items()
+                      if self.wantModuleCoverage(name, module) ]
+          log.debug("Coverage report will cover modules: %s", modules)
+!         coverage.report(modules, file=stream)
+          if self.coverHtmlDir:
+              if not os.path.exists(self.coverHtmlDir):
+                  os.makedirs(self.coverHtmlDir)
+--- 180,186 ----
+                      for name, module in sys.modules.items()
+                      if self.wantModuleCoverage(name, module) ]
+          log.debug("Coverage report will cover modules: %s", modules)
+!         coverage.report(modules, file=stream, omit_prefixes=['.ale/installed/test/pkgs/nose-0.11.0/'])
+          if self.coverHtmlDir:
+              if not os.path.exists(self.coverHtmlDir):
+                  os.makedirs(self.coverHtmlDir)

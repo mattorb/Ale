@@ -14,14 +14,17 @@ class NosetestsCommand(Command):
 
     def execute(self, args=None):
         prevCwd = os.getcwd()
-        pyflakesroot = join(join(join(alePath('installed'), 'nosetests'), 'pkgs'),'nose-0.11.0')
+        noseroot = join(join(join(alePath('installed'), 'test'), 'pkgs'), 'nose-0.11.0')
+        coverageroot = join(join(join(alePath('installed'), 'test'), 'pkgs'), 'coverage-3.2b3')
         
         arg = '.' if not args else args[0]
         
-        command = join(pyflakesroot, "bin/nosetests")
+        command = join(join(noseroot, 'bin/'), 'nosetests')
         print 'Executing %s %s' % (command, arg)
             
-        p = Popen([command, arg], env={"PYTHONPATH": pyflakesroot})  #todo: just yield a generator or get all .py files
+        pythonpath = '%s:%s' % (noseroot, coverageroot)
+            
+        p = Popen([command, arg], env={"PYTHONPATH": pythonpath})  #todo: just yield a generator or get all .py files
         sts = os.waitpid(p.pid, 0)[1]
         
         if sts == 0:
@@ -30,6 +33,21 @@ class NosetestsCommand(Command):
             print 'FAILED!'
         
     def install(self, args=None):
-        extractPath = os.path.join(os.path.join(alePath('installed'), 'nosetests'), 'pkgs')
-        
+        extractPath = os.path.join(os.path.join(alePath('installed'), 'test'), 'pkgs')
+
         downloadAndExtract('http://python-nose.googlecode.com/files/nose-0.11.0.tar.gz', extractPath)
+        downloadAndExtract('http://pypi.python.org/packages/source/c/coverage/coverage-3.2b3.tar.gz', extractPath)
+
+        coverPyPath = join(alePath('installed/test/pkgs/nose-0.11.0/nose/plugins'), 'cover.py')
+        patch1Path = join(alePath('notinstalled/test/'), 'excludecoveragepatch.patch')
+        patch2Path = join(alePath('notinstalled/test/'), 'excludenosepatch.patch')
+
+
+        print 'Patching coverage plugin...'
+        os.system('patch %s %s' % (coverPyPath, patch1Path))
+        os.system('patch %s %s' % (coverPyPath, patch2Path))
+        
+        print 'Adding to .gitignore...'
+        gitignore('.coverage')
+        
+        

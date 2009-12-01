@@ -39,8 +39,14 @@ def download(remotePath, localFileNameInTmpDir=None):
     else:
         localDlPath = os.path.join(alePath('tmp'), localFileNameInTmpDir)
     
-    curlCmd = 'curl -L -o %s %s' % (localDlPath, remotePath)
-    os.system(curlCmd)
+    print 'Downloading %s' % remotePath
+    
+    if not os.path.exists(localDlPath):
+        curlCmd = 'curl -L -o %s %s' % (localDlPath, remotePath)
+        os.system(curlCmd)
+    else:
+        pass #we should do an MD5 check here
+    
     return localDlPath
 
 def extract(srcFile, destPath):
