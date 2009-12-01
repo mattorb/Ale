@@ -17,7 +17,7 @@ extractPath = join(join(join(alePath('installed'), 'gae'), 'pkgs'), gaeversion)
 
 class GaeCommand(Command):
     name = 'gae'
-    shorthelp = 'run this to install gae and some helper commands to .ale'
+    shorthelp = 'google app engine .ale'
 
     def execute(self, args=None):
         if args and args[0].lower() == 'start':
