@@ -13,3 +13,4 @@ Use only what you need, no magic, no global installs (no sudos!), bad-ass testin
 ...do this early enough
 
 sources of inspiration:  Inspiration: homebrew, rake, pyb, paver, pykook, doit
+

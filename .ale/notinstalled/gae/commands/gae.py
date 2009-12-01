@@ -13,8 +13,6 @@ gaeversion = 'google_appengine_1.2.7'
 remotePath = '%s%s' % ('http://googleappengine.googlecode.com/files/', gaefile)
 extractPath = join(join(join(alePath('installed'), 'gae'), 'pkgs'), gaeversion)
 
-
-
 class GaeCommand(Command):
     name = 'gae'
     shorthelp = 'google app engine .ale'
