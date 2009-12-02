@@ -1,6 +1,11 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 from ale.base import Command
+from aleconfig import alePath
+from utils import extract, gitignore
+from os.path import join as join
+import os
+
 import logging
 
 class CreateAppCommand(Command):
@@ -8,17 +13,21 @@ class CreateAppCommand(Command):
     shorthelp = 'createapp [templatename]  -- create the gae hello world app in the current directory from template'
 
     def execute(self, args=None):
+        validTemplateNames = ['helloworld', 'helloworldwebapp', 'pale']
         if not args:
             print self.shorthelp
             print 'available app templates:'
             print 'helloworld'
             print 'helloworldwebapp'
+            print 'pale'
         else:
-            if args[0].lower() != 'helloworld' and args[0].lower() != 'helloworldwebapp':
+            templateName = args[0].lower()
+
+            if templateName not in validTemplateNames:
                 print 'Unknown app name %s' % args[0]
                 return
             
-            if args[0].lower() == 'helloworld':
+            if templateName == 'helloworld':
                     logging.info('creating ./helloworld.py')
                     FILE = open('./helloworld.py', 'w')
                     FILE.write("""
@@ -41,7 +50,7 @@ handlers:
   script: helloworld.py        
             """)
                     FILE.close()                
-            elif args[0].lower() == 'helloworldwebapp':
+            elif templateName == 'helloworldwebapp':
                     logging.info('creating ./helloworld.py')
                     FILE = open('./helloworld.py', 'w')
                     FILE.write("""
@@ -78,4 +87,15 @@ handlers:
   script: helloworld.py        
 """)
                     FILE.close()             
+            else:
+                pkgPath = join(join(alePath('installed'), 'createapp'), 'pkgs')
+                templateZipPath = join(pkgPath, '%s.zip' % templateName)
+                
+                if os.path.exists(templateZipPath):
+                    extract(templateZipPath, '.')
+                    gitignore('tmp')
+                else:
+                    logging.error('Could not find template: %s' % templateName)
+                    return
+                
             logging.info('SUCCESS')
