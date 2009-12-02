@@ -46,13 +46,12 @@ def download(remotePath, localFileNameInTmpDir=None):
     else:
         localDlPath = os.path.join(alePath('tmp'), localFileNameInTmpDir)
     
-    logging.info('Downloading %s' % remotePath)
-    
     if not os.path.exists(localDlPath):
+        logging.info('Downloading %s' % remotePath)
         curlCmd = 'curl -L -o %s %s' % (localDlPath, remotePath)
         os.system(curlCmd)
     else:
-        logging.info("Using cached copy from %s" % relpath(localDlPath))
+        logging.info("Using cached file %s" % relpath(localDlPath))
         pass #we should do an MD5 check here
     
     return localDlPath
