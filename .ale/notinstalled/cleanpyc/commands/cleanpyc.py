@@ -3,6 +3,7 @@
 import os
 import logging
 from ale.base import Command
+from ale.utils import relpath
 
 class Cleanpyc(Command):
     name = 'cleanpyc'
@@ -10,5 +11,5 @@ class Cleanpyc(Command):
     
     def execute(self, args=None):
         command = 'find . -name *.pyc -exec rm {} \;'
-        logging.info('Removing all .pyc files (Executing command: "%s")' % command)
+        logging.info('Removing all .pyc files (Executing command: "%s")' % relpath(command))
         return os.system(command)

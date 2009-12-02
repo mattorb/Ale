@@ -15,7 +15,7 @@ class Create(Command):
             
     def execute(self, args=None):
         if not args:
-            logging.error('specify a command to install.')
+            logging.error('specify a command to create.')
             return
         command = args[0]
         

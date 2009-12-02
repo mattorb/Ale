@@ -20,7 +20,7 @@ class NosetestsCommand(Command):
         arg = '.' if not args else args[0]
         
         command = join(join(noseroot, 'bin/'), 'nosetests')
-        logging.info('Executing %s %s' % (command, arg))
+        logging.info('Executing %s %s' % (relpath(command), arg))
             
         pythonpath = '%s:%s' % (noseroot, coverageroot)
             

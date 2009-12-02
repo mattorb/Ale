@@ -4,7 +4,7 @@ import os
 import logging
 from os.path import join as join
 from aleconfig import alePath
-from utils import extract, download
+from utils import extract, download, relpath
 from ale.base import Command
 from subprocess import Popen
 
@@ -21,7 +21,7 @@ class PyautotestCommand(Command):
         arg = '.' if not args else args[0]
         
         command = join(modipydroot, "bin/pyautotest")
-        logging.info('Executing %s %s' % (command, arg))
+        logging.info('Executing %s %s' % (relpath(command), arg))
         print 'Modify a source file to trigger any dependent tests to re-execute'
             
         commandwithargs = [command, arg] if arg else [command]
