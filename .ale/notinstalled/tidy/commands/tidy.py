@@ -26,9 +26,13 @@ class PythonTidyCommand(Command):
                 tidy(file)
         else:
             pathToTidy = args[0]
-            ignoreAle = lambda: not '.ale' in args[0]
-            for file in dirEntries(pathToTidy, True, ignoreAle, 'py'):
-                tidy(file)
+
+            if os.path.isfile(pathToTidy):
+                tidy(pathToTidy)
+            else:
+                ignoreAle = lambda x: not '.ale' in args[0]
+                for file in dirEntries(pathToTidy, True, ignoreAle, 'py'):
+                    tidy(file)
 
     def install(self, args=None):
         download('http://www.lacusveris.com/PythonTidy/PythonTidy-1.16.python', 'pythontidy.py')
