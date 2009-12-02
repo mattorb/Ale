@@ -26,7 +26,7 @@ class PythonTidyCommand(Command):
                 tidy(file)
         else:
             pathToTidy = args[0]
-            ignoreAle = not '.ale' in args[0]
+            ignoreAle = lambda: not '.ale' in args[0]
             for file in dirEntries(pathToTidy, True, ignoreAle, 'py'):
                 tidy(file)
 

@@ -135,6 +135,6 @@ def dirEntries(dir_name, subdir, ignore, *args):
                     if os.path.splitext(dirfile)[1][1:] in args:
                         fileList.append(dirfile)
             elif os.path.isdir(dirfile) and subdir:
-                fileList += dirEntries(dirfile, subdir, *args)
+                fileList += dirEntries(dirfile, subdir, ignore, *args)
 
     return fileList
