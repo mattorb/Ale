@@ -17,9 +17,13 @@ class PythonTidyCommand(Command):
 
     def execute(self, args=None):
         def tidy(file):
-            command = finalTidyPath + ' ' + file + ' ' + file
+            tmpFile = join(alePath('tmp'), os.path.split(file)[1] + '_tmp')
+            command = finalTidyPath + ' ' + file + ' ' + tmpFile
             logging.info('Tidying %s' % (file) )
-            return os.system(command) #todo: use a generator or smthng to go over all files
+            returnCode = os.system(command)
+            if returnCode == 0:
+                shutil.move(tmpFile, file)
+            return returnCode
 
         return recurse(tidy, *args)
 
