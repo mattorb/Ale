@@ -1,5 +1,7 @@
 import os, logging
 
+from os.path import relpath
+
 from ale.base import Command
 import shutil
 from ale.core import getCommandInstance
@@ -18,7 +20,7 @@ class Install(Command):
         command = args[0]
         sourceTree = os.path.join(notinstalledPath, command)
         destinationTree = os.path.join(installedPath, command)
-        logging.info('Installing from %s to %s' % (sourceTree, destinationTree))
+        logging.info('Installing from %s to %s' % (relPath(sourceTree), relPath(destinationTree)))
         shutil.copytree(sourceTree, destinationTree)
         
         instance = getCommandInstance(command)

@@ -2,6 +2,7 @@
 # encoding: utf-8
 import os
 from aleconfig import alePath
+from os.path import relpath
 import tarfile
 import zipfile
 import gzip as gzipfile
@@ -62,7 +63,7 @@ def downloadAndExtract(remotePath, extractPath):
     extract(localDlPath, extractPath)
 
 def untar(src=None, destdir=None):
-    logging.info('Extracting %s to %s' % (src, destdir))
+    logging.info('Extracting %s to %s' % (relpath(src), relpath(destdir)))
     _src = os.path.normpath(src)
     _destdir = os.path.normpath(destdir)
 
@@ -80,7 +81,7 @@ def untar(src=None, destdir=None):
     os.chdir(prevCwd)
 
 def gunzip(src, destfile=None, destdir=None):
-    logging.info('Extracting %s to %s' % (src, destfile if destfile else destdir))
+    logging.info('Extracting %s to %s' % (relpath(src), relpath(destfile) if destfile else relpath(destdir)))
     _src = os.path.normpath(src)
 
     if destfile is not None:
@@ -104,7 +105,7 @@ def gunzip(src, destfile=None, destdir=None):
     destFile.close()
     
 def unzip(src, destdir):
-    logging.info('Extracting %s to %s' % (src, destdir))
+    logging.info('Extracting %s to %s' % (relpath(src), relpath(destdir)))
     _src = os.path.normpath(src)
     _destdir = os.path.normpath(destdir)
 
