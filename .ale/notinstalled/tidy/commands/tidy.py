@@ -3,7 +3,7 @@
 import os
 from os.path import join as join
 from aleconfig import alePath
-from utils import download, mkdir, dirEntries, recurse
+from utils import download, mkdir, recurse
 from ale.base import Command
 import shutil
 
