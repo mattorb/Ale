@@ -19,7 +19,7 @@ class Install(Command):
         command = args[0]
         sourceTree = os.path.join(notinstalledPath, command)
         destinationTree = os.path.join(installedPath, command)
-        logging.info('Installing from %s to %s' % (relPath(sourceTree), relPath(destinationTree)))
+        logging.info('Installing from %s to %s' % (relpath(sourceTree), relpath(destinationTree)))
         shutil.copytree(sourceTree, destinationTree)
         
         instance = getCommandInstance(command)
