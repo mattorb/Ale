@@ -3,7 +3,7 @@
 import os
 from os.path import join as join
 from aleconfig import alePath
-from utils import download, mkdir, dirEntries
+from utils import download, mkdir, dirEntries, recurse
 from ale.base import Command
 import shutil
 
@@ -19,20 +19,8 @@ class PythonTidyCommand(Command):
             command = finalTidyPath + ' ' + file + ' ' + file
             print 'Tidying %s' % (file) 
             os.system(command) #todo: use a generator or smthng to go over all files
-            
-        if not args:
-            ignoreAle = lambda path : '.ale' in path
-            for file in dirEntries('.', True, ignoreAle, 'py'):
-                tidy(file)
-        else:
-            pathToTidy = args[0]
 
-            if os.path.isfile(pathToTidy):
-                tidy(pathToTidy)
-            else:
-                ignoreAle = lambda x: not '.ale' in args[0]
-                for file in dirEntries(pathToTidy, True, ignoreAle, 'py'):
-                    tidy(file)
+        recurse(tidy, *args)
 
     def install(self, args=None):
         download('http://www.lacusveris.com/PythonTidy/PythonTidy-1.16.python', 'pythontidy.py')
