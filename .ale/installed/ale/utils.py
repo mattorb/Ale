@@ -8,7 +8,7 @@ import gzip as gzipfile
 import logging
 
 def relpath(path): # for os.path.relpath not avail until 2.6
-    return path.replace(os.realpath(os.getcwd()), '')
+    return path.replace(os.path.realpath(os.getcwd()), '')
     
 # just here until we move everything up to python 2.6 or 3.0
 def find(f, seq):
