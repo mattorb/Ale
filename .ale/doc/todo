@@ -14,3 +14,4 @@ when showing paths, take away the absolute info for parents of the relative.
 
 pyflakes should exclude .ale/ by default -- appengine violates all kinds of rules.
 
+local and remote console
