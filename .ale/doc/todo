@@ -1,17 +1,24 @@
-- NOSE GAE?
-- test/http recording tools/makrs?
+Prioritized:
+* when showing paths, take away the absolute info for parents of the relative.
+* tidy destroys a file it has a syntax error parse it...  check with pyflakes first? or tidy to stdout and check return code?
+* watcher/thumb style (daemon that runs a command when a filespec changes changes)
 
-- jslint -- need generator?
-- pythontidy -- need generator?
+not prioritized yet:
+* when the api and structure stabilizes:
+  * test the heck out of thyself
+  * flush out the 'how to contribute' stuff and the basic readme
+* local and remote console
+* MD5 check downloads
+* resolve namespace/multicommand ambiguity issues (installing 'test' installs test+coverage)
+* non-osx compatibility
+* NOSE GAE?
+* use docstrings for help text
+* jslint runner
+* test makers/http recording tools
+* dump/restore shortcuts for datastore
 
-- convert sthng to __doc__
-
-- MD5 check downloads
-
-resolve namespace/multicommand ambiguity issues (installing 'test' installs test+coverage)
-
-when showing paths, take away the absolute info for parents of the relative.
-
-pyflakes should exclude .ale/ by default -- appengine violates all kinds of rules.
-
-local and remote console
+random ideas:
+* dash to jump to an apps dashboard?
+* logs to jump to an apps logs?
+* gae doc for the app engine docs
+* eclipse init to set up a pydev project
