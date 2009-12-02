@@ -11,7 +11,7 @@ import logging
 class CreateAppCommand(Command):
     name = 'createapp'
     shorthelp = 'createapp [templatename]  -- create the gae hello world app in the current directory from template'
-
+    
     def execute(self, args=None):
         validTemplateNames = ['helloworld', 'helloworldwebapp', 'pale']
         if not args:

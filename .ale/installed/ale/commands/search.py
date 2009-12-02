@@ -7,6 +7,7 @@ notinstalledPath = os.path.join(os.path.realpath(os.curdir), '.ale/notinstalled'
 class AvailableCommand(Command):
     name = 'search'
     shorthelp = 'search commands available for install'
+    tags = 'core'
             
     def module_name_part(self, filename):
         mod_name =  filename[len(notinstalledPath) + 1:-3].replace('/', '.').replace('\\', '.')
@@ -40,11 +41,22 @@ class AvailableCommand(Command):
         from ale.base import Command
         commandList = Command.__subclasses__()
 
-        print 'Commands available for install: (Install with "ale install <command>")'
+        print 'Syntax: "ale install <command>" to activate one of these\n'
+        print 'Commands available for install:'
 
         for command in commandList:
             instance = command()
             if instance.name != 'search': # ourself is in memory when __subclassess__ was called
-                print '   %-20.20s %s' % (instance.name, instance.shorthelp)
+                if 'experimental' not in instance.tags:
+                    print '   %-20.20s %s' % (instance.name, instance.shorthelp)
+
+        print '\nCommands which are completely experimental or not working yet (under development)'
+
+        for command in commandList:
+            instance = command()
+            if instance.name != 'search': # ourself is in memory when __subclassess__ was called
+                if 'experimental' in instance.tags:
+                    print '   %-20.20s %s' % (instance.name, instance.shorthelp)
+
                 
         sys.path.pop()

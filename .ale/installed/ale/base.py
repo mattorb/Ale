@@ -4,5 +4,6 @@
 class Command(object):
     name = ''
     shorthelp = ''
+    tags = '' # csv list of tags
     def execute(self, args):
         raise

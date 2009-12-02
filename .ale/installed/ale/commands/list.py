@@ -7,6 +7,7 @@ installedPath = os.path.join(os.path.realpath(os.curdir), '.ale/installed')
 class InstalledCommand(Command):
     name = 'list'
     shorthelp = 'list commands currently installed'
+    tags = 'core'
             
     def module_name_part(self, filename):
         mod_name =  filename[len(installedPath) + 1:-3].replace('/', '.').replace('\\', '.')
@@ -36,9 +37,21 @@ class InstalledCommand(Command):
         from ale.base import Command
         commandList = Command.__subclasses__()
 
-        print 'Syntax:  ale <command>'
-        print 'Available commands:'
+        print 'Syntax:  ale <command>\n'
+        print 'Core commands:'
 
         for command in commandList:
             instance = command()
-            print '   %-20.20s %s' % (instance.name, instance.shorthelp)
+            if 'core' in instance.tags:
+                print '   %-20.20s %s' % (instance.name, instance.shorthelp)
+
+        heading=False
+
+        for command in commandList:
+            instance = command()
+            if 'core' not in instance.tags:
+                if not heading:
+                    print '\nAdditional Commands:'
+                    heading=True
+                    
+                print '   %-20.20s %s' % (instance.name, instance.shorthelp)

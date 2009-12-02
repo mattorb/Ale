@@ -8,6 +8,7 @@ installedPath = os.path.join(os.path.realpath(os.curdir), '.ale/installed')
 class UnInstall(Command):
     name = 'remove'
     shorthelp = 'remove <command>    Uninstalls a command'
+    tags = 'core'
             
     def execute(self, args=None):
         if not args:

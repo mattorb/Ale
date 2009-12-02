@@ -10,6 +10,7 @@ installedPath = os.path.join(os.path.realpath(os.curdir), '.ale/installed')
 
 class Create(Command):
     name = 'create'
+    tags = 'core'
     shorthelp = 'create <command> -- create the skeleton for a new command'
             
     def execute(self, args=None):

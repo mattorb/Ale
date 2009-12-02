@@ -13,6 +13,7 @@ extractPath = os.path.join(os.path.join(alePath('installed'), 'pyautotest'), 'pk
 class PyautotestCommand(Command):
     name = 'pyautotest'
     shorthelp = 'run pyautotest (continuous test runner) against the project or pyautotest [dir]'
+    tags = 'experimental'
 
     def execute(self, args=None):
         modipydroot = join(join(join(alePath('installed'), 'pyautotest'), 'pkgs'),'ishikawa-modipyd-4ebdf28')

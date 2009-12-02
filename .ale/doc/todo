@@ -1,7 +1,8 @@
 Prioritized:
-* watcher/thumb style (daemon that runs a command when a filespec changes changes)
+* watcher/thumb style (daemon that runs a command when a test or filespec changes)
 
 Not prioritized yet:
+* way to tag commands into categories/qualities (experimental, testing, etc)
 * when the api and structure stabilizes:
   * test the heck out of thyself
   * flush out the 'how to contribute' stuff and the basic readme

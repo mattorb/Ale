@@ -11,6 +11,7 @@ installedPath = os.path.join(os.path.realpath(os.curdir), '.ale/installed')
 class Install(Command):
     name = 'install'
     shorthelp = 'install <command>'
+    tags = 'core'
             
     def execute(self, args=None):
         if not args:

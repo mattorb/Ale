@@ -13,6 +13,7 @@ extractPath = join(join(join(alePath('installed'), 'django'), 'pkgs'), djangover
 
 class DjangoCommand(Command):
     name = 'django'
+    tags = 'experimental'
 
     shorthelp = 'Experimental: django app engine patch.  Install sample project to currentdirectory -- overwrites stuff!  careful!'
 
