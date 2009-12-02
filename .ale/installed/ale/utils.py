@@ -52,6 +52,7 @@ def download(remotePath, localFileNameInTmpDir=None):
         curlCmd = 'curl -L -o %s %s' % (localDlPath, remotePath)
         os.system(curlCmd)
     else:
+        logging.info("Using cached copy from %s" % relpath(localDlPath))
         pass #we should do an MD5 check here
     
     return localDlPath
