@@ -2,12 +2,14 @@
 # encoding: utf-8
 import os
 from aleconfig import alePath
-from os.path import relpath
 import tarfile
 import zipfile
 import gzip as gzipfile
 import logging
 
+def relpath(path): # for os.path.relpath not avail until 2.6
+    return path.replace(os.realpath(os.getcwd()), '')
+    
 # just here until we move everything up to python 2.6 or 3.0
 def find(f, seq):
     """Return first item in sequence where f(item) == True."""
@@ -158,4 +160,3 @@ def recurse(command, *args):
             for file in dirEntries(pathToFile, True, ignoreAle, 'py'):
                 errorCount += command(file)
     return errorCount
-    

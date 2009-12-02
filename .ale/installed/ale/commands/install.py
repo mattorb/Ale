@@ -1,10 +1,9 @@
 import os, logging
 
-from os.path import relpath
-
 from ale.base import Command
 import shutil
 from ale.core import getCommandInstance
+from ale.utils import relpath
 
 notinstalledPath = os.path.join(os.path.realpath(os.curdir), '.ale/notinstalled')
 installedPath = os.path.join(os.path.realpath(os.curdir), '.ale/installed')
