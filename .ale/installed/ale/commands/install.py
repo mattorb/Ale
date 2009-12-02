@@ -20,6 +20,11 @@ class Install(Command):
         sourceTree = os.path.join(notinstalledPath, command)
         destinationTree = os.path.join(installedPath, command)
         logging.info('Installing from %s to %s' % (relpath(sourceTree), relpath(destinationTree)))
+
+        if os.path.exists(destinationTree):
+            logging.error('%s is already installed.   To re-install, "ale remove %s" first. ' % (command, command))
+            return 1
+        
         shutil.copytree(sourceTree, destinationTree)
         
         instance = getCommandInstance(command)
