@@ -26,7 +26,4 @@ class NoseCoverageCommand(Command):
         p = Popen([command, '--with-coverage', '--cover-erase', '--cover-exclude-package', 'nose', arg], env={"PYTHONPATH": pythonpath})  #todo: just yield a generator or get all .py files
         sts = os.waitpid(p.pid, 0)[1]
 
-        if sts == 0:
-            print 'SUCCESS'
-        else:
-            print 'FAILED!'
+        return sts

@@ -19,6 +19,7 @@ class DjangoCommand(Command):
     def execute(self, args=None):
         print 'Insert python code to do whatever the task needs to do.  Take a look at some of the other tasks (**/commands/*.py) for guidance.'
         os.system('echo echo echo echo')
+        return 0
 
     def install(self, args=None):
         downloadAndExtract(remotePath, extractPath)

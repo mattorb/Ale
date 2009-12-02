@@ -51,7 +51,7 @@ def executeCommand(command, args=None):
     instance  = getCommandInstance(command)
     
     if instance:
-        instance.execute(args)
+        return instance.execute(args)
 
 class Main():
     def execute(self, args=None):
@@ -60,6 +60,13 @@ class Main():
         logging.debug('Running from %s' % aleroot)
 
         if args[1:]:
-            executeCommand(args[1], args[2:])
+            result = executeCommand(args[1], args[2:])
+            if result != None:
+                if result > 0:
+                    print 'FAILED! (%s errors)' % result
+                else:
+                    print 'SUCCESS'
         else:
             executeCommand('list')
+
+        

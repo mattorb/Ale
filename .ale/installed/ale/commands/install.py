@@ -26,4 +26,4 @@ class Install(Command):
         if hasattr(instance, 'install'):
             instance.install()
         
-
+        return 0 # error count (0=success).

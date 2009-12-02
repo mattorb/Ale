@@ -19,9 +19,9 @@ class PythonTidyCommand(Command):
         def tidy(file):
             command = finalTidyPath + ' ' + file + ' ' + file
             logging.info('Tidying %s' % (file) )
-            os.system(command) #todo: use a generator or smthng to go over all files
+            return os.system(command) #todo: use a generator or smthng to go over all files
 
-        recurse(tidy, *args)
+        return recurse(tidy, *args)
 
     def install(self, args=None):
         download('http://www.lacusveris.com/PythonTidy/PythonTidy-1.16.python', 'pythontidy.py')

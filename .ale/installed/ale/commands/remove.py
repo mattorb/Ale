@@ -20,3 +20,5 @@ class UnInstall(Command):
             logging.error('Could not find installed command: %s' % command)
         else:
             shutil.rmtree(sourceTree)
+
+        return 0

@@ -98,4 +98,4 @@ handlers:
                     logging.error('Could not find template: %s' % templateName)
                     return
                 
-            logging.info('SUCCESS')
+            return 0

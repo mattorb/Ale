@@ -21,8 +21,9 @@ class PyFlakesCommand(Command):
             #print 'Checking %s' % file
             p = Popen([command, file], env={"PYTHONPATH": pyflakesroot})  #todo: just yield a generator or get all .py files
             sts = os.waitpid(p.pid, 0)[1]
+            return sts
             
-        recurse(check, *args)
+        return recurse(check, *args)
         
     def install(self, args=None):
         extractPath = os.path.join(os.path.join(alePath('installed'), 'pyflakes'), 'pkgs')

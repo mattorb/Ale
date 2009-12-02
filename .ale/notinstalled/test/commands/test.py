@@ -27,10 +27,7 @@ class NosetestsCommand(Command):
         p = Popen([command, arg], env={"PYTHONPATH": pythonpath})  #todo: just yield a generator or get all .py files
         sts = os.waitpid(p.pid, 0)[1]
         
-        if sts == 0:
-            print 'SUCCESS'
-        else:
-            print 'FAILED!'
+        return sts
         
     def install(self, args=None):
         extractPath = os.path.join(os.path.join(alePath('installed'), 'test'), 'pkgs')

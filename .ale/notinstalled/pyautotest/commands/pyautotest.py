@@ -28,10 +28,7 @@ class PyautotestCommand(Command):
         p = Popen(commandwithargs, env={"PYTHONPATH": '%s:%s' % (modipydroot, '.')})  #todo: just yield a generator or get all .py files
         sts = os.waitpid(p.pid, 0)[1]
         
-        if sts == 0:
-            print 'SUCCESS'
-        else:
-            print 'FAILED!'
+        return sts
         
     def install(self, args=None):
         dlFile = download('http://github.com/ishikawa/modipyd/zipball/release-1-0', 'ishikawa-modipyd.zip')

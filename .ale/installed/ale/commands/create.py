@@ -57,6 +57,7 @@ from ale.base import Command
     def execute(self, args=None):
         print 'Insert python code to do whatever the task needs to do.  Take a look at some of the other tasks (**/commands/*.py) for guidance.'
         os.system('echo echo echo echo')
+        return 0 # error count (0=success).
 
 ## defining install is optional 
 #    def install(self, args=None):
