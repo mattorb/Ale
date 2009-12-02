@@ -3,7 +3,7 @@
 import os
 from os.path import join as join
 from aleconfig import alePath
-from utils import download, mkdir
+from utils import download, mkdir, dirEntries
 from ale.base import Command
 import shutil
 
@@ -15,9 +15,20 @@ class PythonTidyCommand(Command):
     shorthelp = 'experimental: run PythonTidy to beautify the python source files'
 
     def execute(self, args=None):
-        command = finalTidyPath if not args else finalTidyPath + ' ' + ' '.join(args)
-        print 'Executing %s' % (command) 
-        os.system(command) #todo: use a generator or smthng to go over all files
+        def tidy(file):
+            command = finalTidyPath + ' ' + file + ' ' + file
+            print 'Tidying %s' % (file) 
+            os.system(command) #todo: use a generator or smthng to go over all files
+            
+        if not args:
+            ignoreAle = lambda path : '.ale' in path
+            for file in dirEntries('.', True, ignoreAle, 'py'):
+                tidy(file)
+        else:
+            pathToTidy = args[0]
+            ignoreAle = not '.ale' in args[0]
+            for file in dirEntries(pathToTidy, True, ignoreAle, 'py'):
+                tidy(file)
 
     def install(self, args=None):
         download('http://www.lacusveris.com/PythonTidy/PythonTidy-1.16.python', 'pythontidy.py')

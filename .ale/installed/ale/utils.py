@@ -121,3 +121,20 @@ def unzip(src, destdir):
             destfile.write(zipFile.read(name))
             destfile.close()
     zipFile.close()
+    
+def dirEntries(dir_name, subdir, ignore, *args):
+    fileList = []
+    for file in os.listdir(dir_name):
+        dirfile = os.path.join(dir_name, file)
+
+        if not ignore(dir_name):
+            if os.path.isfile(dirfile):
+                if len(args) == 0:
+                    fileList.append(dirfile)
+                else:
+                    if os.path.splitext(dirfile)[1][1:] in args:
+                        fileList.append(dirfile)
+            elif os.path.isdir(dirfile) and subdir:
+                fileList += dirEntries(dirfile, subdir, *args)
+
+    return fileList
