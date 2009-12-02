@@ -1,5 +1,4 @@
 Prioritized:
-* when showing paths, take away the absolute info for parents of the relative.
 * tidy destroys a file it has a syntax error parse it...  check with pyflakes first? or tidy to stdout and check return code?
 * watcher/thumb style (daemon that runs a command when a filespec changes changes)
 

@@ -1,4 +1,4 @@
-Requirments:  OS X 10.6, git
+Requirments:  OS X 10.6, git, python 2.5
 
 
 #Ale
