@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import os
+import logging
 from os.path import join as join
 from aleconfig import alePath
 from utils import downloadAndExtract, gitignore
@@ -19,7 +20,7 @@ class NosetestsCommand(Command):
         arg = '.' if not args else args[0]
         
         command = join(join(noseroot, 'bin/'), 'nosetests')
-        print 'Executing %s %s' % (command, arg)
+        logging.info('Executing %s %s' % (command, arg))
             
         pythonpath = '%s:%s' % (noseroot, coverageroot)
             
@@ -42,14 +43,14 @@ class NosetestsCommand(Command):
         patch2Path = join(alePath('notinstalled/test/'), 'excludenosepatch.patch')
 
 
-        print 'Patching coverage plugin...'
+        logging.info('Patching coverage plugin...')
         os.system('patch %s %s' % (coverPyPath, patch1Path))
         os.system('patch %s %s' % (coverPyPath, patch2Path))
         
-        print 'Adding to .gitignore...'
+        logging.info('Adding to .gitignore...')
         gitignore('.coverage')
         
-        print 'creating ./testfake.py'
+        logging.info('creating ./testfake.py')
         FILE = open('./testfake.py', 'w')
         FILE.write("""
 import random

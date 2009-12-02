@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import os
+import logging
 from os.path import join as join
 from aleconfig import alePath
 from utils import download, mkdir, recurse
@@ -17,7 +18,7 @@ class PythonTidyCommand(Command):
     def execute(self, args=None):
         def tidy(file):
             command = finalTidyPath + ' ' + file + ' ' + file
-            print 'Tidying %s' % (file) 
+            logging.info('Tidying %s' % (file) )
             os.system(command) #todo: use a generator or smthng to go over all files
 
         recurse(tidy, *args)

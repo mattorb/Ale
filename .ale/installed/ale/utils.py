@@ -5,6 +5,7 @@ from aleconfig import alePath
 import tarfile
 import zipfile
 import gzip as gzipfile
+import logging
 
 # just here until we move everything up to python 2.6 or 3.0
 def find(f, seq):
@@ -25,7 +26,7 @@ def gitignore(filePattern):
         gitignoreForRead.close()
     
     if not filePattern in currentIgnoredPatterns:
-        print 'Adding pattern: [%s] to .gitignore' % filePattern
+        logging.info('Adding pattern: [%s] to .gitignore' % filePattern)
         destFile = open('.gitignore', 'a')
         destFile.write(filePattern + '\n')
         destFile.close()
@@ -39,7 +40,7 @@ def download(remotePath, localFileNameInTmpDir=None):
     else:
         localDlPath = os.path.join(alePath('tmp'), localFileNameInTmpDir)
     
-    print 'Downloading %s' % remotePath
+    logging.info('Downloading %s' % remotePath)
     
     if not os.path.exists(localDlPath):
         curlCmd = 'curl -L -o %s %s' % (localDlPath, remotePath)
@@ -61,7 +62,7 @@ def downloadAndExtract(remotePath, extractPath):
     extract(localDlPath, extractPath)
 
 def untar(src=None, destdir=None):
-    print 'Extracting %s to %s' % (src, destdir)
+    logging.info('Extracting %s to %s' % (src, destdir))
     _src = os.path.normpath(src)
     _destdir = os.path.normpath(destdir)
 
@@ -79,7 +80,7 @@ def untar(src=None, destdir=None):
     os.chdir(prevCwd)
 
 def gunzip(src, destfile=None, destdir=None):
-    print 'Extracting %s to %s' % (src, destfile if destfile else destdir)
+    logging.info('Extracting %s to %s' % (src, destfile if destfile else destdir))
     _src = os.path.normpath(src)
 
     if destfile is not None:
@@ -103,7 +104,7 @@ def gunzip(src, destfile=None, destdir=None):
     destFile.close()
     
 def unzip(src, destdir):
-    print 'Extracting %s to %s' % (src, destdir)
+    logging.info('Extracting %s to %s' % (src, destdir))
     _src = os.path.normpath(src)
     _destdir = os.path.normpath(destdir)
 

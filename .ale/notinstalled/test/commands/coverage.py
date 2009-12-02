@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import os
+import logging
 from os.path import join as join
 from aleconfig import alePath
 from ale.base import Command
@@ -18,7 +19,7 @@ class NoseCoverageCommand(Command):
         arg = '.' if not args else args[0]
 
         command = join(join(noseroot, 'bin/'), 'nosetests')
-        print 'Executing %s %s' % (command, arg)
+        logging.info('Executing %s %s' % (command, arg))
 
         pythonpath = '%s:%s' % (noseroot, coverageroot)
 

@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import os
+import logging
 from ale.base import Command
 
 class Cleanpyc(Command):
@@ -9,5 +10,5 @@ class Cleanpyc(Command):
 
     def execute(self, args=None):
         command = 'find . -name *.pyc -exec rm {} \;'
-        print 'Removing all .pyc files (Executing command: "%s")' % command
+        logging.info('Removing all .pyc files (Executing command: "%s")' % command)
         os.system(command)

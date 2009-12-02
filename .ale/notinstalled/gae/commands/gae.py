@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import os
+import logging
 from os.path import join as join
 from utils import downloadAndExtract, gitignore
 from ale.aleconfig import alePath
@@ -30,7 +31,7 @@ class GaeCommand(Command):
             os.system('%s/google_appengine/appcfg.py update .' % extractPath)
         else:
             if args:
-                print 'unknown command: %s' % args[0]
+                logging.error('unknown command: %s' % args[0])
             else:
                 print 'try "ale gae start"'
 
