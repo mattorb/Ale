@@ -1,0 +1,15 @@
+*** pyflakes_old.py	2009-12-03 11:24:00.000000000 -0600
+--- pyflakes.py	2009-12-03 11:27:11.000000000 -0600
+***************
+*** 28,33 ****
+--- 28,37 ----
+          return 1
+      else:
+          w = checker.Checker(tree, filename)
++ 
++         lines = codeString.split('\n')
++         w.messages = [message for message in w.messages if lines[message.lineno-1].find('pyflakes:ignore') < 0]
++ 
+          w.messages.sort(lambda a, b: cmp(a.lineno, b.lineno))
+          for warning in w.messages:
+              print warning

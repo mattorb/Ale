@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import os
+import logging
 from os.path import join as join
 from aleconfig import alePath
 from utils import downloadAndExtract, recurse
@@ -29,3 +30,9 @@ class PyFlakesCommand(Command):
         extractPath = os.path.join(os.path.join(alePath('recipes_installed'), 'pyflakes'), 'pkgs')
         
         downloadAndExtract('http://pypi.python.org/packages/source/p/pyflakes/pyflakes-0.3.0.tar.gz', extractPath)
+
+        pyflakesPyPath = join(alePath('recipes_installed/pyflakes/pkgs/pyflakes-0.3.0/pyflakes/scripts'), 'pyflakes.py')
+        patch1Path = join(alePath('recipes_all/pyflakes/'), 'pyflakeignore.patch')
+
+        logging.info('Patching pyflakes to allow the pyflakes:ignore directive ...')
+        os.system('patch %s %s' % (pyflakesPyPath, patch1Path))

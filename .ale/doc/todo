@@ -15,6 +15,7 @@ Not prioritized yet:
 * jslint runner
 * test makers/http recording tools
 * dump/restore shortcuts for datastore
+* local and remote shell
 
 random ideas:
 * dash to jump to an apps dashboard?
