@@ -10,7 +10,7 @@ Not prioritized yet:
 * MD5 check downloads
 * resolve namespace/multicommand ambiguity issues (installing 'test' installs test+coverage)
 * non-osx compatibility?
-* NOSE GAE?
+* NOSE GAE? -- sandbox / test feature
 * use docstrings for help text
 * jslint runner
 * test makers/http recording tools
