@@ -29,7 +29,7 @@ class WatcherCommand(Command):
             sound_file = self.negativeSound
             print '************************ERROR.  You need to fix this.  ********************************'
         
-        os.system('%s %s' % (player_name, os.path.join(sound_dir, sound_file)))
+        os.system('%s %s' % (player_name, sound_file))
 
     def execute(self, args=None):
 
