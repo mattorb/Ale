@@ -4,3 +4,4 @@ echo Creating symlink to Ale
 ln -s .ale/recipes_installed/ale/main.py ale
 git add ale .ale .gitmodules
 git commit -a -m 'Pouring some ale on it'
+export PATH=.:$PATH
