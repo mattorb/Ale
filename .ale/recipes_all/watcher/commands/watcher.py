@@ -53,8 +53,13 @@ class WatcherCommand(Command):
             print '  list'
             print '  add <file_extension> <command_to_exec_on_change>'
             print '  remove <file_extension> <command_to_exec_on_change>'
+            print '  help'
             return
         
+        if len(self.watchlist.keys()) == 0:
+            print 'No watches configured.   Run "ale watcher help" for help'
+            return
+            
         ignoreAle = lambda path : '.ale' in path
         
         filesForType = {}
