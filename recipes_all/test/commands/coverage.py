@@ -34,7 +34,7 @@ class NoseCoverageCommand(Command):
 
         pythonpath = ':'.join([noseroot, coverageroot] + getGaeLibs())
 
-        p = Popen([command, '--with-coverage', '--cover-erase', '--cover-inclusive', '--cover-exclude-package', 'nose', arg], env={"PYTHONPATH": pythonpath})
+        p = Popen([command, '--with-coverage', '--cover-erase', '--cover-inclusive', '--cover-exclude-package', 'nose,webob,urllib,google,ssl,wsgiref,urlparse,rfc822,mimetools,httplib,dummy_thread,cgi,calendar,base64,Cookie', arg], env={"PYTHONPATH": pythonpath})
         sts = os.waitpid(p.pid, 0)[1]
 
         return sts
