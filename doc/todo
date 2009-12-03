@@ -1,9 +1,7 @@
 Prioritized:
-* Use ale (watcher,etc) on ale.
+*
 
 Not prioritized yet:
-* have watcher change the window title based on state (successs as of ..., failed as of ...., running command xxxx)
-    * os x syntax to set window title:   echo -n -e "\033]0;Here's your title\007"
 * add pep8 command - http://github.com/jcrocholl/pep8/raw/49fb01f94e27242c5604bbc3cb04ab7e8a593e34/pep8.py
 * when the api and structure stabilizes:
   * test the heck out of thyself

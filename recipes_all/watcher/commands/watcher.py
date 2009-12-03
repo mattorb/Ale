@@ -20,14 +20,20 @@ class WatcherCommand(Command):
     
     watchlist = {}
 
-    def notify(self, success):
+    def settitle(self, title):
+        os.system('echo "\\033]0;%s\\007"' % title)
+
+    def notify(self, command, success):
         player_name = 'afplay' if os.uname()[0] == 'Darwin' else 'aplay -q'
 
         if success:
             sound_file = self.positiveSound
+            print 'Success. (%s)' % command
+            self.settitle('%s %s' % (command, 'Succeeded'))
         else:
             sound_file = self.negativeSound
-            print '************************ERROR.  You need to fix this.  ********************************'
+            print 'ERROR. (%s) **************************************************** You need to fix this.' % command
+            self.settitle('%s %s' % (command, 'Failed'))
         
         os.system('%s %s' % (player_name, sound_file))
 
@@ -96,8 +102,9 @@ class WatcherCommand(Command):
                 snapshotTouch = getLastTouch(filesForType[type])
                 if snapshotTouch > currenttouch:
                     for command in self.watchlist[type]:
+                        self.settitle('running %s' % command)
                         result = executeCommand(command, [])
-                        self.notify(result == 0)
+                        self.notify(command, result == 0)
 
                     currenttouch=snapshotTouch
                 time.sleep(1)
