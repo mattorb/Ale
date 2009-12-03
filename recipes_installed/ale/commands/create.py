@@ -5,9 +5,6 @@ from os.path import join as join
 from ale.base import Command
 from ale.aleconfig import alePath
 
-recipes_allPath = os.path.join(os.path.realpath(os.curdir), '.ale/recipes_all')
-recipes_installedPath = os.path.join(os.path.realpath(os.curdir), '.ale/recipes_installed')
-
 class Create(Command):
     name = 'create'
     tags = 'core'

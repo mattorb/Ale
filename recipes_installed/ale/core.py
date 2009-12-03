@@ -12,7 +12,7 @@ def alePath(dir):
 
 def findCommandFile(commandName):
     files = []
-    command_file_pattern = re.compile(r'\.ale/recipes_installed.*commands/%s\.py$' % commandName.lower())
+    command_file_pattern = re.compile(r'.*recipes_installed.*commands/%s\.py$' % commandName.lower())
 
     for (dp, dn, fn) in os.walk(recipes_installedroot):
         for file in fn:

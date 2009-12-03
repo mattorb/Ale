@@ -4,9 +4,7 @@ from ale.base import Command
 import shutil
 from ale.core import getCommandInstance
 from ale.utils import relpath
-
-recipes_allPath = os.path.join(os.path.realpath(os.curdir), '.ale/recipes_all')
-recipes_installedPath = os.path.join(os.path.realpath(os.curdir), '.ale/recipes_installed')
+from ale.aleconfig import recipes_installedroot, recipes_allroot
 
 class Install(Command):
     name = 'install'
@@ -18,8 +16,8 @@ class Install(Command):
             logging.error('specify a command to install.')
             return
         command = args[0]
-        sourceTree = os.path.join(recipes_allPath, command)
-        destinationTree = os.path.join(recipes_installedPath, command)
+        sourceTree = os.path.join(recipes_allroot, command)
+        destinationTree = os.path.join(recipes_installedroot, command)
         logging.info('Installing from %s to %s' % (relpath(sourceTree), relpath(destinationTree)))
 
         if os.path.exists(destinationTree):

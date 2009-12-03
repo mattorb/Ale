@@ -2,7 +2,7 @@
 # encoding: utf-8
 import sys, os
 
-recipes_installedPath = os.path.join(os.path.realpath(os.curdir), '.ale/recipes_installed')
+recipes_installedPath = os.path.normpath(os.path.join(os.path.dirname(os.path.realpath(__file__)), '../../recipes_installed'))
 
 if not recipes_installedPath in sys.path:
     sys.path.insert(0, recipes_installedPath)

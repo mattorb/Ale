@@ -1,8 +1,7 @@
 import os, re, logging
 
 from ale.base import Command
-
-recipes_installedPath = os.path.join(os.path.realpath(os.curdir), '.ale/recipes_installed')
+from ale.aleconfig import recipes_installedroot
 
 class InstalledCommand(Command):
     name = 'list'
@@ -10,17 +9,17 @@ class InstalledCommand(Command):
     tags = 'core'
             
     def module_name_part(self, filename):
-        mod_name =  filename[len(recipes_installedPath) + 1:-3].replace('/', '.').replace('\\', '.')
-        return re.sub('.ale.recipes_installed.', '', mod_name)
+        mod_name =  filename[len(recipes_installedroot) + 1:-3].replace('/', '.').replace('\\', '.')
+        return re.sub('.*recipes_installed.', '', mod_name)
 
     def package_name_part(self, module_name):
         return module_name.split('.')[0]
             
     def execute(self, args=None):
         files = []
-        pattern = re.compile('\.ale/recipes_installed.*commands/.*\.py$')
+        pattern = re.compile('.*/recipes_installed.*commands/.*\.py$')
 
-        for (dp, dn, fn) in os.walk(recipes_installedPath):
+        for (dp, dn, fn) in os.walk(recipes_installedroot):
             for file in fn:
                 filename = os.path.join(dp, file)
 
