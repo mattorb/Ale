@@ -24,7 +24,7 @@ class NoseCoverageCommand(Command):
 
         pythonpath = '%s:%s' % (noseroot, coverageroot)
 
-        p = Popen([command, '--with-coverage', '--cover-erase', '--cover-exclude-package', 'nose', arg], env={"PYTHONPATH": pythonpath})  #todo: just yield a generator or get all .py files
+        p = Popen([command, '--with-coverage', '--cover-erase', '--cover-inclusive', '--cover-exclude-package', 'nose', arg], env={"PYTHONPATH": pythonpath})  #todo: just yield a generator or get all .py files
         sts = os.waitpid(p.pid, 0)[1]
 
         return sts

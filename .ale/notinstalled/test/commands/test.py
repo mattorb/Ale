@@ -4,7 +4,7 @@ import os
 import logging
 from os.path import join as join
 from aleconfig import alePath
-from utils import downloadAndExtract, gitignore
+from utils import downloadAndExtract, gitignore, relpath
 from ale.base import Command
 from subprocess import Popen
 

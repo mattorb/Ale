@@ -47,6 +47,13 @@ def getCommandInstance(command):
     
     return commandToExec
 
+def isCommandInstalled(commandName):
+    try:
+        module=importCommand(commandName)
+        return True
+    except ImportError, e:
+        return False
+
 def executeCommand(command, args=None):
     instance  = getCommandInstance(command)
     

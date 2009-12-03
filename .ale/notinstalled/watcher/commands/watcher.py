@@ -3,16 +3,20 @@
 import os
 from os.path import join as join
 from ale.base import Command
-from ale.core import executeCommand
+from ale.core import executeCommand, isCommandInstalled
 from ale.utils import dirEntries
+from aleconfig import alePath
 import logging
 import time
+import pickle
 
 class WatcherCommand(Command):
     name = 'watcher'
     shorthelp = 'monitors files matching a filespec for change and triggers command(s)'
     
-    watchlist = {'py':['pyflakes', 'test']}
+    watchconfigfile = join(alePath('installed/watcher'), 'config.pickle')
+    
+    watchlist = {}
 
     def notify(self, success):
         if success:
@@ -21,6 +25,36 @@ class WatcherCommand(Command):
             print '************************ERROR.  You need to fix this.  ********************************'
 
     def execute(self, args=None):
+
+        if args and len(args) == 3 and args[0] == 'add':
+            filetype = args[1]
+            command = args[2]
+            self.addWatch(filetype, command)
+            return
+        
+        if args and len(args) == 3 and args[0] == 'remove':
+            filetype = args[1]
+            command = args[2]
+            self.removeWatch(filetype, command)
+            return
+
+        self.loadWatches()
+
+        if args and len(args) == 1 and args[0] == 'list':
+            print 'Stuff to watch:'
+            for type in self.watchlist.iterkeys():
+                for command in self.watchlist[type]:
+                    logging.info('When *.%s changes, execute %s' % (type, command))
+            return 
+            
+        if args:
+            print '\nSyntax: ale watcher [command]\n'
+            print '  Optional Commands:'
+            print '  list'
+            print '  add <file_extension> <command_to_exec_on_change>'
+            print '  remove <file_extension> <command_to_exec_on_change>'
+            return
+        
         ignoreAle = lambda path : '.ale' in path
         
         filesForType = {}
@@ -58,13 +92,50 @@ class WatcherCommand(Command):
 
         return 0 # error count (0=success).
         
-#    def addWatch(fileextension, command):
-        # verify the command is installed.
-        # add the watch
-        # store the watch list
-#        pass
+    def install(self, args=None):
+        if isCommandInstalled('pyflakes'):
+            self.addWatch('py', 'pyflakes')
         
-#    def removeWatch(fileextension, command):
-        # remove the watch
-        # store the watch list
-#        pass
+        if isCommandInstalled('test'):
+            self.addWatch('py', 'test')
+    
+    def loadWatches(self):
+        if os.path.exists(self.watchconfigfile):
+            file = open(self.watchconfigfile, 'rb')
+            self.watchlist = pickle.load(file)
+            file.close()
+        else:
+            self.watchlist = {}
+        
+    def addWatch(self, fileextension, command):
+        self.loadWatches()
+
+        if not isCommandInstalled(command):
+            logging.error('unrecognized command: %s' % command)
+            return
+
+        commandsfortype = self.watchlist[fileextension] if fileextension in self.watchlist else None
+        if commandsfortype:
+            self.watchlist[fileextension].append(command)
+        else:
+            self.watchlist[fileextension] = [command]
+            
+        file = open(self.watchconfigfile, 'wb')
+        pickle.dump(self.watchlist, file)
+        file.close()
+        logging.info('Added watch for .%s -- execute %s on change.' % (fileextension, command))
+
+        
+    def removeWatch(self, fileextension, command):
+        self.loadWatches()
+        
+        commandsfortype = self.watchlist[fileextension]
+        if commandsfortype:
+            self.watchlist[fileextension].remove(command)
+            if len(self.watchlist[fileextension]) == 0:
+                del self.watchlist[fileextension]
+            
+        file = open(self.watchconfigfile, 'wb')
+        pickle.dump(self.watchlist, file)
+        file.close()
+        logging.info('Removed watch for .%s to execute %s' % (fileextension, command))
