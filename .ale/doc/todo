@@ -1,7 +1,8 @@
 Prioritized:
-* watcher/thumb/nosy daemon that runs a command when a test or filespec changes
+* 
 
 Not prioritized yet:
+* add pep8 command - http://github.com/jcrocholl/pep8/raw/49fb01f94e27242c5604bbc3cb04ab7e8a593e34/pep8.py
 * when the api and structure stabilizes:
   * test the heck out of thyself
   * flush out the 'how to contribute' stuff and the basic readme
