@@ -15,14 +15,21 @@ class WatcherCommand(Command):
     shorthelp = 'monitors files matching a filespec for change and triggers command(s)'
     
     watchconfigfile = join(alePath('recipes_installed/watcher'), 'config.pickle')
+    positiveSound = join(alePath('recipes_installed/watcher'), 'positive.wav')
+    negativeSound = join(alePath('recipes_installed/watcher'), 'negative.wav')
     
     watchlist = {}
 
     def notify(self, success):
+        player_name = 'afplay' if os.uname()[0] == 'Darwin' else 'aplay -q'
+
         if success:
-            pass
+            sound_file = self.positiveSound
         else:
+            sound_file = self.negativeSound
             print '************************ERROR.  You need to fix this.  ********************************'
+        
+        os.system('%s %s' % (player_name, os.path.join(sound_dir, sound_file)))
 
     def execute(self, args=None):
 
