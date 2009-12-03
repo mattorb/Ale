@@ -1,5 +1,6 @@
 Prioritized:
-* 
+* project updating/init issues (git ignores, etc)
+* notification sound on success/fail
 
 Not prioritized yet:
 * add pep8 command - http://github.com/jcrocholl/pep8/raw/49fb01f94e27242c5604bbc3cb04ab7e8a593e34/pep8.py
@@ -23,3 +24,4 @@ random ideas:
 * gae doc for the app engine docs
 * eclipse init to set up a pydev project
 * downorup -- ping homepage on interval to check availability
+* media compressor/bundler
