@@ -46,7 +46,7 @@ The nice thing about this option is you can git pull updates of the Ale code ind
 ## Create a new command
     ale create [command]
     
-# Quickstarts
+# Jumpstarts
 ## Hello World - appengine local
     ale install gae
     ale install createapp
@@ -58,8 +58,30 @@ The nice thing about this option is you can git pull updates of the Ale code ind
     ale install createapp
     ale createapp helloworldwebapp
     ale gae start
-
+##Linting
+    ale install pyflakes
+    ale pyflakes
+##Unit Testing
+    ale install test
+    ale test
+##Measuring test coverage
+    ale install test
+    ale coverage
+##Continuous Testing
+    ale install pyflakes
+    ale install test
+    ale install watcher
+    ale watcher
+    [modify a file, lint&tests re-run automatically]
+    
+    ... Other stuff you can do ...
+    ale watcher add py coverage
+    ale watcher remove py pyflakes
+    
+    ale watcher add py ataskyoucreate
+    ale watcher
+    
 # How to contribute
     todo....
 
-### Sources of inspiration:  Inspiration: homebrew, rake, pyb, paver, pykook, doit, bad experiences with globally installed libs
+### Sources of inspiration: homebrew, rake, pyb, paver, pykook, doit, bad experiences with globally installed libs
