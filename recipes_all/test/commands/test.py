@@ -24,7 +24,7 @@ class NosetestsCommand(Command):
 
         pythonpath = ':'.join([noseroot] + getGaeLibs())
             
-        p = Popen([command, "-i *[Tt]est", "-i [Tt]est*", "-e .ale*",arg], env={"PYTHONPATH": pythonpath})  #todo: just yield a generator or get all .py files
+        p = Popen([command, "-e *.ale*", "-i *[Tt]est", "-i [Tt]est*", arg], env={"PYTHONPATH": pythonpath})  #todo: just yield a generator or get all .py files
         sts = os.waitpid(p.pid, 0)[1]
         
         return sts
