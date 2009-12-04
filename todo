@@ -16,6 +16,9 @@ Not prioritized yet:
 * test makers/http recording tools
 * dump/restore shortcuts for datastore
 * local and remote shell
+* more sophisticated test re-runner for watch -- modipyd??
+* generate smoke test with hello world apps?
+* pale stuff
 
 random ideas:
 * dash to jump to an apps dashboard?
