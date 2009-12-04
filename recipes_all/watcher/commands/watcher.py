@@ -22,20 +22,20 @@ class WatcherCommand(Command):
 
     def settitle(self, title):
         os.system('echo "\\033]0;%s\\007"' % title)
+        
+    def sound(self, file):
+        player_name = 'afplay' if os.uname()[0] == 'Darwin' else 'aplay -q'
+        os.system('%s %s' % (player_name, file))
 
     def notify(self, command, success):
-        player_name = 'afplay' if os.uname()[0] == 'Darwin' else 'aplay -q'
-
         if success:
-            sound_file = self.positiveSound
+            self.sound(self.positiveSound)
             print 'Success. (%s)' % command
             self.settitle('%s %s' % (command, 'Succeeded'))
         else:
-            sound_file = self.negativeSound
+            self.sound(self.negativeSound)
             print 'ERROR. (%s) **************************************************** You need to fix this.' % command
             self.settitle('%s %s' % (command, 'Failed'))
-        
-        os.system('%s %s' % (player_name, sound_file))
 
     def execute(self, args=None):
 
@@ -86,7 +86,7 @@ class WatcherCommand(Command):
                     lasttouch = os.path.getmtime(file)
             return lasttouch
 
-        logging.info('Watcher started.')
+        logging.info('Watcher started.  (Run "ale watcher help" for help)')
         
         for type in self.watchlist.iterkeys():
             for command in self.watchlist[type]:
