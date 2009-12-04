@@ -75,5 +75,3 @@ class Main():
                     print 'SUCCESS'
         else:
             executeCommand('list')
-
-        
