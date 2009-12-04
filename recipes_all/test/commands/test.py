@@ -20,6 +20,9 @@ class NosetestsCommand(Command):
         command = join(join(noseroot, 'bin/'), 'nosetests')
 
         args = ['.'] if not args else args
+
+        args += ["-e lib.*", "-e .*.ale.*", "-m [Tt]est"]
+
         fullcommandwithargs = [command] + args
         relcommandwithargs = [relpath(command)] + args
 
@@ -27,9 +30,6 @@ class NosetestsCommand(Command):
 
         pythonpath = ':'.join([noseroot] + getGaeLibs())
             
-        #arg += "-e *lib*", "-e *.ale*", "-i *[Tt]est", "-i [Tt]est*"
-        args += ["-e lib.*", "-e .*.ale.*", "-m [Tt]est"]
-        
         p = Popen(fullcommandwithargs, env={"PYTHONPATH": pythonpath})  #todo: just yield a generator or get all .py files
         sts = os.waitpid(p.pid, 0)[1]
         
