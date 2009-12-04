@@ -118,8 +118,9 @@ Fork http://github.com/mpstx/Ale and send me a pull-request
 
 The easiest way to fork is with the github-gem, so potentially this is your workflow:
 
-    brew create http://example.com/foo-1.2.1.tar.bz2
-    git commit Library/Formula/foo.rb
+    ale create [command]
+    [edit the command and test it with install, execution, remove, etc]
+    [commit it to your local .ale git repo]
     github fork
     git push myname master
     github pull-request
