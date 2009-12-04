@@ -146,12 +146,12 @@ def dirEntries(dir_name, subdir, ignore, *args):
 
     return fileList
 
-def recurse(command, *args):
+def recurse(command, extension, *args):
     errorCount = 0
     
     if not args:
         ignoreAle = lambda path : '.ale' in path
-        for file in dirEntries('.', True, ignoreAle, 'py'):
+        for file in dirEntries('.', True, ignoreAle, extension):
             errorCount += command(file)
     else:
         pathToFile = args[0]
@@ -160,6 +160,6 @@ def recurse(command, *args):
             errorCount += command(pathToFile)
         else:
             ignoreAle = lambda x: not '.ale' in args[0]
-            for file in dirEntries(pathToFile, True, ignoreAle, 'py'):
+            for file in dirEntries(pathToFile, True, ignoreAle, extension):
                 errorCount += command(file)
     return errorCount

@@ -24,7 +24,7 @@ class PyFlakesCommand(Command):
             sts = os.waitpid(p.pid, 0)[1]
             return sts
             
-        return recurse(check, *args)
+        return recurse(check, 'py', *args)
         
     def install(self, args=None):
         extractPath = os.path.join(os.path.join(alePath('recipes_installed'), 'pyflakes'), 'pkgs')

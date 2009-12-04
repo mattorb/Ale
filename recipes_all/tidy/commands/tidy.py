@@ -25,7 +25,7 @@ class PythonTidyCommand(Command):
                 shutil.move(tmpFile, file)
             return returnCode
 
-        return recurse(tidy, *args)
+        return recurse(tidy, 'py', *args)
 
     def install(self, args=None):
         download('http://www.lacusveris.com/PythonTidy/PythonTidy-1.16.python', 'pythontidy.py')
