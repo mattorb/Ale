@@ -1,18 +1,20 @@
-Requirments:  OS X 10.6, git, python 2.5, appengine
+Requirments:  OS X 10.6, git, python 2.5 (for Appengine)
 
-#Ale
+#Ale 
 ## Philosophy
 Use only what you need, convention over configuration, but prefer dry brevity over magic, no global installs (no sudos!), bad-ass testing, best of breed tools.  Most of all, lightning fast gae python development.
 
 ## What's the point
 Fair warning:  That's _still evolving_, but here's what is there now:
 
-A command-line tool that is easy to extend (with recipes) yet keeps packages isolated in a project specific configuration.  
+A command-line tool that is easy to extend (with recipes) yet keeps installed tools isolated in a project specific configuration.  
 
-It's an odd mix of features from build tools, package management tools, and stuff you would otherwise write a shell script for.
+It's an odd mix of features from build tools, package management tools, and stuff you would otherwise write one-off scripts for.
 
-We have some pre-built recipes for downloading, and configuring various tools to get you app engine python project up and 
+There are some pre-built recipes for downloading, and configuring various tools to get you app engine python project up and 
 running quickly.
+
+It's _very_ easy to create your own recipes as well, and they're straight up python.
 
 You can install only the tools/commands you need and remove the ones you don't.  The cool part of that is you 
 (or someone new to your project) only sees the stuff that is relevant to your project (not 150 different commands 
