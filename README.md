@@ -41,6 +41,15 @@ The nice thing about this option is you can git pull updates of the Ale code ind
     $ ale
     - or - 
     $ ale list
+    Syntax:  ale <command>
+
+    Core commands:
+       list                 list commands currently recipes_installed
+       create               create <command> -- create the skeleton for a new command
+       install              install <command>
+       remove               remove <command>    Uninstalls a command
+       search               search commands available for install
+    
 ## See what you can install
     $ ale search
     Syntax: "ale install <command>" to activate one of these
@@ -55,15 +64,6 @@ The nice thing about this option is you can git pull updates of the Ale code ind
        test                 discover and run all unit tests using nose
        tidy                 experimental: run PythonTidy to beautify the python source files
        watcher              monitors files matching a filespec for change and triggers command(s)
-    
-## Install a command
-    $ ale install [command]
-## Remove a command you installed
-    $ ale remove [command]
-## Create a new command
-    $ ale create [command]
-## Execute a command
-    $ ale [command]
     
 # Jumpstarts
 ## Hello World - appengine local
