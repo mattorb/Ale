@@ -1,6 +1,6 @@
 Ale is something I got inspired to do after building [Flexvite](http://www.flexvite.com "Flexvite") on app engine.   Hopefully it saves you some time.
 
-Requirments:  OS X 10.6, git, python 2.5 (for Appengine)
+Requirements:  OS X 10.6, git, python 2.5 (for Appengine)
 
 #Ale 
 ## Philosophy
