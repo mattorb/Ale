@@ -4,7 +4,7 @@ import os
 import logging
 from os.path import join as join
 from aleconfig import alePath
-from utils import downloadAndExtract, gitignore, relpath
+from utils import downloadAndExtract, gitignore, relpath, getGaeLibs
 from ale.base import Command
 from subprocess import Popen
 
@@ -21,8 +21,8 @@ class NosetestsCommand(Command):
         
         command = join(join(noseroot, 'bin/'), 'nosetests')
         logging.info('Executing %s %s' % (relpath(command), arg))
-            
-        pythonpath = '%s:%s' % (noseroot, coverageroot)
+
+        pythonpath = ':'.join([noseroot] + getGaeLibs())
             
         p = Popen([command, arg], env={"PYTHONPATH": pythonpath})  #todo: just yield a generator or get all .py files
         sts = os.waitpid(p.pid, 0)[1]
