@@ -11,7 +11,7 @@ A command-line tool that is easy to extend (with recipes) yet keeps installed to
 
 It's an odd mix of features from build tools, package management tools, and stuff you would otherwise write one-off scripts for.
 
-There are some pre-built recipes for downloading, and configuring various tools to get you app engine python project up and 
+There are some pre-built recipes for downloading, and configuring various tools to get your app engine python project up and 
 running quickly.
 
 It's _very_ easy to create your own recipes as well, and they're straight up python.
