@@ -13,7 +13,8 @@ finalTidyPath = join(finalTidyDir, 'pythontidy.py')
 
 class PythonTidyCommand(Command):
     name = 'tidy'
-    shorthelp = 'experimental: run PythonTidy to beautify the python source files'
+    shorthelp = 'run PythonTidy to beautify the python source files'
+    tags = 'experimental'
 
     def execute(self, args=None):
         def tidy(file):

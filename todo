@@ -5,7 +5,6 @@ Not prioritized yet:
 * add pep8 command - http://github.com/jcrocholl/pep8/raw/49fb01f94e27242c5604bbc3cb04ab7e8a593e34/pep8.py
 * when the api and structure stabilizes:
   * test the heck out of thyself
-* flush out the 'how to contribute' stuff
 * local and remote console
 * MD5 check downloads
 * resolve namespace/multicommand ambiguity issues (installing 'test' installs test+coverage)

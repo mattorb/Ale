@@ -110,6 +110,18 @@ The nice thing about this option is you can git pull updates of the Ale code ind
     $ ale watcher
     
 # How to contribute
-    todo....
+Great explanation prety much written by the guy that runs the [homebrew](http://github.com/mxcl/homebrew "homebrew") project:
+    
+Modify an existing recipe in all_recipes, or create a new one using 'ale create [command]'.
+    
+Fork http://github.com/mpstx/Ale and send me a pull-request
 
-### Sources of inspiration: homebrew, rake, pyb, paver, pykook, doit, bad experiences with globally installed libs, lack of being impressed with existing python installation/package/environment management tools -- especially in the context of appengine development
+The easiest way to fork is with the github-gem, so potentially this is your workflow:
+
+    brew create http://example.com/foo-1.2.1.tar.bz2
+    git commit Library/Formula/foo.rb
+    github fork
+    git push myname master
+    github pull-request
+
+### Sources of inspiration: homebrew, rake, pyb, paver, pykook, doit, bad experiences with globally installed libs, dissatisfaction with easy_install, setup.py, etc in the context of appengine development
