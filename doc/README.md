@@ -4,7 +4,7 @@ Requirments:  OS X 10.6, git, python 2.5 (for Appengine)
 ## Philosophy
 Use only what you need, convention over configuration, but prefer dry brevity over magic, no global installs (no sudos!), bad-ass testing, best of breed tools.  Most of all, lightning fast gae python development.
 
-## What's the point
+## Purpose
 Fair warning:  That's _still evolving_, but here's what is there now:
 
 A command-line tool that is easy to extend (with recipes) yet keeps installed tools isolated in a project specific configuration.  
