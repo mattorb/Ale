@@ -17,14 +17,16 @@ class NosetestsCommand(Command):
         noseroot = join(join(join(alePath('recipes_installed'), 'test'), 'pkgs'), 'nose-0.11.0')
         coverageroot = join(join(join(alePath('recipes_installed'), 'test'), 'pkgs'), 'coverage-3.2b3')
         
-        arg = '.' if not args else args[0]
+        arg = '.' if not args else ' '.join(args)
         
         command = join(join(noseroot, 'bin/'), 'nosetests')
         logging.info('Executing %s %s' % (relpath(command), arg))
 
         pythonpath = ':'.join([noseroot] + getGaeLibs())
             
-        p = Popen([command, "-e *lib*", "-e *.ale*", "-i *[Tt]est", "-i [Tt]est*", arg], env={"PYTHONPATH": pythonpath})  #todo: just yield a generator or get all .py files
+        #arg += "-e *lib*", "-e *.ale*", "-i *[Tt]est", "-i [Tt]est*"
+        
+        p = Popen([command, arg], env={"PYTHONPATH": pythonpath})  #todo: just yield a generator or get all .py files
         sts = os.waitpid(p.pid, 0)[1]
         
         return sts
