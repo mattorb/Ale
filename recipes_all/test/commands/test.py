@@ -21,7 +21,7 @@ class NosetestsCommand(Command):
 
         args = ['.'] if not args else args
 
-        args += ["-e", "lib.*", "-e", ".*.ale.*", "-i", "(?:^|[\b_\./-])[Tt]est", "-i", "[Ttest]$"]
+        args += ["-e", "lib.*", "-e", ".*.ale.*", "-i", "(?:^|[\\b_\\./-])[Tt]est", "-i", "[Tt]est$"]
 
         fullcommandwithargs = [command] + args
         relcommandwithargs = [relpath(command)] + args
