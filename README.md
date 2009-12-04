@@ -77,9 +77,12 @@ The nice thing about this option is you can git pull updates of the Ale code ind
     $ ale install createapp
     $ ale createapp helloworldwebapp
     $ ale gae start
-##Linting
+##Linting Python files
     $ ale install pyflakes
     $ ale pyflakes
+##Linting Javascript files
+    $ ale install jslint
+    $ ale jslint
 ##Unit Testing
     $ ale install test
     $ ale test
@@ -97,7 +100,13 @@ The nice thing about this option is you can git pull updates of the Ale code ind
     $ ale watcher add py coverage
     $ ale watcher remove py pyflakes
     
-    $ ale watcher add py ataskyoucreate
+    ... Watch and trigger for multiple file types ...
+    $ ale watcher add js jslint
+    $ ale watcher add py coverage
+
+    ... Create and add your own tasks to trigger ...
+    $ ale create ataskyoumake
+    $ ale watcher add py ataskyoumake
     $ ale watcher
     
 # How to contribute
