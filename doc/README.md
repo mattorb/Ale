@@ -86,4 +86,4 @@ The nice thing about this option is you can git pull updates of the Ale code ind
 # How to contribute
     todo....
 
-### Sources of inspiration: homebrew, rake, pyb, paver, pykook, doit, bad experiences with globally installed libs
+### Sources of inspiration: homebrew, rake, pyb, paver, pykook, doit, bad experiences with globally installed libs, lack of being impressed with existing python installation/package/environment management tools -- especially in the context of appengine development
