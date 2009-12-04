@@ -19,9 +19,8 @@ class NosetestsCommand(Command):
         
         command = join(join(noseroot, 'bin/'), 'nosetests')
 
-        args = ['.'] if not args else args
-
-        args += ["-e", "lib.*", "-e", ".*.ale.*", "-m", "[Tt]est"] 
+        args = [] if not args else args
+        args += [ "-m", "test", "-e", "lib.*", "-e", ".*.ale.*"] 
 
         fullcommandwithargs = [command] + args
         relcommandwithargs = [relpath(command)] + args
