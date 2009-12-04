@@ -20,8 +20,8 @@ class NosetestsCommand(Command):
         command = join(join(noseroot, 'bin/'), 'nosetests')
 
         args = ['.'] if not args else args
-        fullcommandwithargs = [command] + [args]
-        relcommandwithargs = [relpath(command)] + [args]
+        fullcommandwithargs = [command] + args
+        relcommandwithargs = [relpath(command)] + args
 
         logging.info('Executing %s' % relcommandwithargs)
 
