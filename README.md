@@ -110,7 +110,7 @@ The nice thing about this option is you can git pull updates of the Ale code ind
     $ ale watcher
     
 # How to contribute
-Great explanation prety much written by the guy that runs the [homebrew](http://github.com/mxcl/homebrew "homebrew") project:
+Great explanation pretty much written by the guy that runs the [homebrew](http://github.com/mxcl/homebrew "homebrew") project:
     
 Modify an existing recipe in all_recipes, or create a new one using 'ale create [command]'.
     
