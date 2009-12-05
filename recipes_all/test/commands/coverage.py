@@ -24,7 +24,7 @@ class NoseCoverageCommand(Command):
                  '--cover-erase', 
                  '--cover-inclusive', 
                  '--cover-exclude-package',  # need to generate this list somehow or find a better way to run coverage
-                 'django,email,encodings,xml,yaml,ctypes,json,lib,codeop,hmac,sha,sgmllib,uuid,mockito,simplejson,subprocess,smtplib,uu,md5,markupbase,icalendar,hashlib,gzip,getpass,_strptime,nose,webob,urllib,google,ssl,wsgiref,urlparse,rfc822,mimetools,httplib,dummy_thread,cgi,calendar,base64,Cookie', 
+                 'pickle,mimetypes,quopri,weakref,facebook,appengine_utilities,django,email,encodings,xml,yaml,ctypes,json,lib,codeop,hmac,sha,sgmllib,uuid,mockito,simplejson,subprocess,smtplib,uu,md5,markupbase,icalendar,hashlib,gzip,getpass,_strptime,nose,webob,urllib,google,ssl,wsgiref,urlparse,rfc822,mimetools,httplib,dummy_thread,cgi,calendar,base64,Cookie', 
                  "-m", "test", "-e", "lib.*", "-e", ".*\.ale.*"] 
 
         fullcommandwithargs = [command] + args
