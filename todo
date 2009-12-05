@@ -17,6 +17,7 @@ Not prioritized yet:
 * more sophisticated test re-runner for watch -- modipyd??
 * generate smoke test with hello world apps?
 * pale stuff
+* on failure you get errorlevels adding together instead of number of failures (256 errors = a 256 return code usually)
 
 random ideas:
 * dash to jump to an apps dashboard?
