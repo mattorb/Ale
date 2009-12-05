@@ -77,6 +77,18 @@ The nice thing about this option is you can git pull updates of the Ale code ind
     $ ale install createapp
     $ ale createapp helloworldwebapp
     $ ale gae start
+    
+##Deploy to appengine
+    $ ale gae deploy
+###See what else you can do with appengine
+    $ ale gae
+        Available subcommands:
+        start         -- start the local dev_appserver
+        deploy        -- deploy to the hosted gae app
+        dash          -- open the dashboard for the hosted gae app
+        logs          -- open the dashboard (on logs tab) for hosted gae app
+        data          -- open the dashboard (on data tab) for hosted gae app
+    
 ##Linting Python files
     $ ale install pyflakes
     $ ale pyflakes
