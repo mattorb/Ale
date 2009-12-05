@@ -13,7 +13,7 @@
                       for name, module in sys.modules.items()
                       if self.wantModuleCoverage(name, module) ]
           log.debug("Coverage report will cover modules: %s", modules)
-!         coverage.report(modules, file=stream, omit_prefixes=['.ale/recipes_installed/test/pkgs/nose-0.11.0/','recipes_installed/test/pkgs/nose-0.11.0/'])
+!         coverage.report(modules, file=stream, omit_prefixes=['lib','tools','.ale/recipes_installed/gae','.ale/recipes_installed/test/pkgs/nose-0.11.0/','recipes_installed/test/pkgs/nose-0.11.0/'])
           if self.coverHtmlDir:
               if not os.path.exists(self.coverHtmlDir):
                   os.makedirs(self.coverHtmlDir)
