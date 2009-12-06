@@ -18,6 +18,7 @@ Not prioritized yet:
 * generate smoke test with hello world apps?
 * pale stuff
 * on failure you get errorlevels adding together instead of number of failures (256 errors = a 256 return code usually)
+* detect # of cores, and pass correct --processes arg to nose test/coverage runners
 
 random ideas:
 * dash to jump to an apps dashboard?
