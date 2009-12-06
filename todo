@@ -14,7 +14,7 @@ Not prioritized yet:
 * test makers/http recording tools
 * dump/restore shortcuts for datastore
 * local and remote shell
-* more sophisticated test re-runner for watch -- modipyd??
+* more sophisticated test re-runner for watcher -- modipyd??
 * generate smoke test with hello world apps?
 * pale stuff
 * on failure you get errorlevels adding together instead of number of failures (256 errors = a 256 return code usually)

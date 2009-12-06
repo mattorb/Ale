@@ -150,7 +150,7 @@ def recurse(command, extension, *args):
     errorCount = 0
     
     if not args:
-        ignorePath = lambda path : '.ale' in path or 'lib' in path or 'tools' in path
+        ignorePath = lambda path : '.ale' in path or 'lib' in path or 'tools' in path or 'pkgs' in path
         for file in dirEntries('.', True, ignorePath, extension):
             errorCount += command(file)
     else:
