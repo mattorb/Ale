@@ -43,8 +43,9 @@ class GaeCommand(Command):
             print '   start         -- start the local dev_appserver'
             print '   deploy        -- deploy to the hosted gae app'
             print '   dash          -- open the dashboard for the hosted gae app'
-            print '   logs          -- open the dashboard (on logs tab) for hosted gae app'
+            print '   log           -- open the dashboard (on logs tab) for hosted gae app'
             print '   data          -- open the dashboard (on data tab) for hosted gae app'
+            print '   doc           -- open the gae python docs'
             return
         
         if args and args[0].lower() == 'start':
@@ -61,7 +62,7 @@ class GaeCommand(Command):
             appId = getAppId()
             if appId:
                 os.system('open http://appengine.google.com/dashboard?app_id=%s' % appId)
-        elif args and args[0].lower() == 'logs':
+        elif args and args[0].lower() == 'log':
             appId = getAppId()
             if appId:
                 os.system('open http://appengine.google.com/logs?app_id=%s' % appId)
@@ -69,6 +70,8 @@ class GaeCommand(Command):
             appId = getAppId()
             if appId:
                 os.system('open http://appengine.google.com/datastore/explorer?app_id=%s' % appId)
+        elif args and args[0].lower() == 'doc':
+            os.system('open http://code.google.com/appengine/docs/python/')
         else:
             logging.error('unknown command: %s' % args[0])
 

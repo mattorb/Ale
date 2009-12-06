@@ -21,9 +21,6 @@ Not prioritized yet:
 * detect # of cores, and pass correct --processes arg to nose test/coverage runners
 
 random ideas:
-* dash to jump to an apps dashboard?
-* logs to jump to an apps logs?
-* gae doc for the app engine docs
 * eclipse init to set up a pydev project
 * downorup -- ping homepage on interval to check availability
 * media compressor/bundler
