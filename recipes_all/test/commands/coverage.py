@@ -34,7 +34,7 @@ class NoseCoverageCommand(Command):
 
         pythonpath = ':'.join([noseroot, coverageroot] + getGaeLibs())
 
-        p = Popen(fullcommandwithargs, env={"PYTHONPATH": pythonpath})
+        p = Popen(fullcommandwithargs, env={"PYTHONPATH": pythonpath, "PATH":os.environ['PATH']})
         sts = os.waitpid(p.pid, 0)[1]
 
         return sts
