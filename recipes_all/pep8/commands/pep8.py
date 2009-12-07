@@ -22,7 +22,8 @@ class Pep8Command(Command):
         
         def check(file):
             #print 'Checking %s' % file
-            p = Popen([command, '--show-source', '--show-pep8', file], env={"PYTHONPATH": pep8root})  
+            commandWithArgs = [command, '--show-source', '--statistics', '--count', '--show-pep8', file]
+            p = Popen(commandWithArgs, env={"PYTHONPATH": pep8root})  
             sts = os.waitpid(p.pid, 0)[1]
             return sts
             
