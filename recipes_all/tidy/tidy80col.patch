@@ -1,0 +1,19 @@
+*** pythontidy_old.py	2009-12-07 13:11:10.000000000 -0600
+--- pythontidy.py	2009-12-07 13:11:22.000000000 -0600
+***************
+*** 214,220 ****
+  # Old code is parsed.  New code is generated from the parsed version,
+  # using these literals:
+  
+! COL_LIMIT = 72
+  INDENTATION = '    '
+  ASSIGNMENT = ' = '
+  FUNCTION_PARAM_ASSIGNMENT = '='
+--- 214,220 ----
+  # Old code is parsed.  New code is generated from the parsed version,
+  # using these literals:
+  
+! COL_LIMIT = 79
+  INDENTATION = '    '
+  ASSIGNMENT = ' = '
+  FUNCTION_PARAM_ASSIGNMENT = '='

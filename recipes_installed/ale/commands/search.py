@@ -1,20 +1,27 @@
-import sys, os, re, logging
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+import sys
+import os
+import re
+import logging
 
 from ale.base import Command
 from ale.aleconfig import recipes_allroot
 
+
 class AvailableCommand(Command):
+
     name = 'search'
     shorthelp = 'search commands available for install'
     tags = 'core'
-            
+
     def module_name_part(self, filename):
-        mod_name =  filename[len(recipes_allroot) + 1:-3].replace('/', '.').replace('\\', '.')
+        mod_name = filename[len(recipes_allroot) + 1:-3].replace('/', '.').replace('\\', '.')
         return re.sub('.*recipes_all.', '', mod_name)
 
     def package_name_part(self, module_name):
         return module_name.split('.')[0]
-            
+
     def execute(self, args=None):
         files = []
         pattern = re.compile('.*/recipes_all.*commands/.*\.py$')
@@ -45,7 +52,7 @@ class AvailableCommand(Command):
 
         for command in commandList:
             instance = command()
-            if instance.name != 'search': # ourself is in memory when __subclassess__ was called
+            if instance.name != 'search':  # ourself is in memory when __subclassess__ was called
                 if 'experimental' not in instance.tags:
                     print '   %-20.20s %s' % (instance.name, instance.shorthelp)
 
@@ -53,9 +60,10 @@ class AvailableCommand(Command):
 
         for command in commandList:
             instance = command()
-            if instance.name != 'search': # ourself is in memory when __subclassess__ was called
+            if instance.name != 'search':  # ourself is in memory when __subclassess__ was called
                 if 'experimental' in instance.tags:
                     print '   %-20.20s %s' % (instance.name, instance.shorthelp)
 
-                
         sys.path.pop()
+
+
