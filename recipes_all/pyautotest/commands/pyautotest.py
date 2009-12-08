@@ -29,7 +29,7 @@ class PyautotestCommand(Command):
 
         commandwithargs = [command, arg] if arg else [command]
 
-        pythonpath = ':'.join([modipydroot] + ['.'] + getGaeLibs())
+        pythonpath = ':'.join([modipydroot] + ['.'] + ['lib'] + getGaeLibs())
 
         p = Popen(commandwithargs, env={'PATH':os.environ['PATH'], 'PYTHONPATH': pythonpath})  # todo: just yield a generator or get all .py files
         sts = os.waitpid(p.pid, 0)[1]
