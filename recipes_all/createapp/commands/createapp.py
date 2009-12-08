@@ -37,9 +37,9 @@ class CreateAppCommand(Command):
                 download(tarballurl, '%s.tar.gz' % templateName)
                 os.system('tar xz --strip 1 %s -C .' % tmpPath)
             elif templateName == 'helloworld':
-                    logging.info('creating ./helloworld.py')
-                    FILE = open('./helloworld.py', 'w')
-                    FILE.write("""
+                logging.info('creating ./helloworld.py')
+                FILE = open('./helloworld.py', 'w')
+                FILE.write("""
 print 'Content-Type: text/plain'
 print ''
 print 'Hello, world!  This is a bare bones app engine application'
