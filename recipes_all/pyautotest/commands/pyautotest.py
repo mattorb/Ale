@@ -29,7 +29,7 @@ class PyautotestCommand(Command):
 
         commandwithargs = [command, arg] if arg else [command]
 
-        p = Popen(commandwithargs, env={'PYTHONPATH': '%s:%s' % (modipydroot, '.')})  # todo: just yield a generator or get all .py files
+        p = Popen(commandwithargs, env={'PATH':os.environ['PATH'], 'PYTHONPATH': '%s:%s' % (modipydroot, '.')})  # todo: just yield a generator or get all .py files
         sts = os.waitpid(p.pid, 0)[1]
 
         return sts
