@@ -1,20 +1,26 @@
-import os, re, logging
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+import os
+import re
+import logging
 
 from ale.base import Command
 from ale.aleconfig import recipes_installedroot
 
+
 class InstalledCommand(Command):
+
     name = 'list'
     shorthelp = 'list commands currently recipes_installed'
     tags = 'core'
-            
+
     def module_name_part(self, filename):
-        mod_name =  filename[len(recipes_installedroot) + 1:-3].replace('/', '.').replace('\\', '.')
+        mod_name = filename[len(recipes_installedroot) + 1:-3].replace('/', '.').replace('\\', '.')
         return re.sub('.*recipes_installed.', '', mod_name)
 
     def package_name_part(self, module_name):
         return module_name.split('.')[0]
-            
+
     def execute(self, args=None):
         files = []
         pattern = re.compile('.*/recipes_installed.*commands/.*\.py$')
@@ -44,13 +50,15 @@ class InstalledCommand(Command):
             if 'core' in instance.tags:
                 print '   %-20.20s %s' % (instance.name, instance.shorthelp)
 
-        heading=False
+        heading = False
 
         for command in commandList:
             instance = command()
             if 'core' not in instance.tags:
                 if not heading:
                     print '\nAdditional Commands:'
-                    heading=True
-                    
+                    heading = True
+
                 print '   %-20.20s %s' % (instance.name, instance.shorthelp)
+
+

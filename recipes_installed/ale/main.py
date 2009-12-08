@@ -1,8 +1,11 @@
-#!/usr/bin/env python
-# encoding: utf-8
-import sys, os
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 
-recipes_installedPath = os.path.normpath(os.path.join(os.path.dirname(os.path.realpath(__file__)), '../../recipes_installed'))
+import sys
+import os
+
+recipes_installedPath = os.path.normpath(os.path.join(os.path.dirname(os.path.realpath(__file__)),
+                                         '../../recipes_installed'))
 
 if not recipes_installedPath in sys.path:
     sys.path.insert(0, recipes_installedPath)

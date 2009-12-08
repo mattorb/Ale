@@ -1,14 +1,21 @@
-#!/usr/bin/env python
-# encoding: utf-8
-import sys, os, logging, utils, re
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+import sys
+import os
+import logging
+import utils
+import re
 
 from ale.base import Command
 
-aleroot = os.path.dirname( os.path.realpath(__file__) )
-recipes_installedroot = os.path.realpath(os.path.join(os.path.dirname( os.path.realpath(__file__) ), '..'))
+aleroot = os.path.dirname(os.path.realpath(__file__))
+recipes_installedroot = os.path.realpath(os.path.join(os.path.dirname(os.path.realpath(__file__)), '..'))
+
 
 def alePath(dir):
     return os.path.join(recipes_installedroot, dir)
+
 
 def findCommandFile(commandName):
     files = []
@@ -22,6 +29,7 @@ def findCommandFile(commandName):
 
     raise ImportError, 'Could not locate command %s' % commandName
 
+
 def importCommand(commandName):
     try:
         fullPathToCommand = findCommandFile(commandName)
@@ -32,35 +40,41 @@ def importCommand(commandName):
     except ImportError, e:
         logging.debug(e)
         raise e
-    
+
     return module
+
 
 def getCommandInstance(command):
     try:
         module = importCommand(command)
         commandInstances = [commandClass() for commandClass in Command.__subclasses__()]
-        commandToExec = utils.find(lambda recipes_installedCommand: recipes_installedCommand.name == command, commandInstances)
+        commandToExec = utils.find(lambda recipes_installedCommand: recipes_installedCommand.name == command,
+                                   commandInstances)
     except ImportError, e:
         logging.error('Unknown command: %s.' % command)
         print 'Search available commands with "ale search", install new command with "ale install <command>"'
         return
-    
+
     return commandToExec
+
 
 def isCommandInstalled(commandName):
     try:
-        module=importCommand(commandName)
+        module = importCommand(commandName)
         return True
     except ImportError, e:
         return False
 
+
 def executeCommand(command, args=None):
-    instance  = getCommandInstance(command)
-    
+    instance = getCommandInstance(command)
+
     if instance:
         return instance.execute(args)
 
-class Main():
+
+class Main:
+
     def execute(self, args=None):
 
         logging.basicConfig(stream=sys.stdout, level=logging.INFO, format='%(levelname)s %(message)s')
@@ -75,3 +89,5 @@ class Main():
                     print 'SUCCESS'
         else:
             executeCommand('list')
+
+

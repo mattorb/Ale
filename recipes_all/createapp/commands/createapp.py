@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+
 from ale.base import Command
 from aleconfig import alePath
 from utils import extract, gitignore, download
@@ -8,10 +9,12 @@ import os
 
 import logging
 
+
 class CreateAppCommand(Command):
+
     name = 'createapp'
     shorthelp = 'createapp [templatename]  -- create an app from a template'
-    
+
     def execute(self, args=None):
         validTemplateNames = ['helloworld', 'helloworldwebapp', 'pale']
         if not args:
@@ -28,7 +31,6 @@ class CreateAppCommand(Command):
             if templateName not in validTemplateNames:
                 print 'Unknown app name %s' % args[0]
                 return
-            
             if templateName in ['xmppsendandreply','emailreceive','emailsendui']:
                 tarballurl = 'http://github.com/mpstx/appengine_py_%s/tarball/master' % templateName
                 tmpPath = join(join(alePath('tmp'), templateName + '.tar.gz'))
@@ -42,11 +44,11 @@ print 'Content-Type: text/plain'
 print ''
 print 'Hello, world!  This is a bare bones app engine application'
 """)
-                    FILE.close()
+                FILE.close()
 
-                    logging.info('creating ./app.yaml')
-                    FILE = open('./app.yaml', 'w')
-                    FILE.write("""
+                logging.info('creating ./app.yaml')
+                FILE = open('./app.yaml', 'w')
+                FILE.write("""
 application: helloworld
 version: 1
 runtime: python
@@ -56,11 +58,11 @@ handlers:
 - url: /.*
   script: helloworld.py        
             """)
-                    FILE.close()                
+                FILE.close()
             elif templateName == 'helloworldwebapp':
-                    logging.info('creating ./helloworld.py')
-                    FILE = open('./helloworld.py', 'w')
-                    FILE.write("""
+                logging.info('creating ./helloworld.py')
+                FILE = open('./helloworld.py', 'w')
+                FILE.write("""
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp.util import run_wsgi_app
 
@@ -79,11 +81,11 @@ def main():
 if __name__ == "__main__":
     main()
 """)
-                    FILE.close()
+                FILE.close()
 
-                    logging.info('creating ./app.yaml')
-                    FILE = open('./app.yaml', 'w')
-                    FILE.write("""
+                logging.info('creating ./app.yaml')
+                FILE = open('./app.yaml', 'w')
+                FILE.write("""
 application: helloworldwebapp
 version: 1
 runtime: python
@@ -93,16 +95,18 @@ handlers:
 - url: /.*
   script: helloworld.py        
 """)
-                    FILE.close()             
+                FILE.close()
             else:
                 pkgPath = join(join(alePath('recipes_installed'), 'createapp'), 'pkgs')
                 templateZipPath = join(pkgPath, '%s.zip' % templateName)
-                
+
                 if os.path.exists(templateZipPath):
                     extract(templateZipPath, '.')
                     gitignore('tmp')
                 else:
                     logging.error('Could not find template: %s' % templateName)
                     return
-                
+
             return 0
+
+

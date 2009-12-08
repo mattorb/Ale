@@ -1,33 +1,37 @@
-import os, logging
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+import os
+import logging
 
 from os.path import join as join
 
 from ale.base import Command
 from ale.aleconfig import alePath
 
+
 class Create(Command):
+
     name = 'create'
     tags = 'core'
     shorthelp = 'create <command> -- create the skeleton for a new command'
-            
+
     def execute(self, args=None):
         if not args:
             logging.error('specify a command to create.')
             return
         command = args[0]
-        
+
         os.makedirs(join(join(alePath('recipes_all'), command), 'commands'))
 
         init1Path = join(join(join(alePath('recipes_all'), command), '__init__.py'))
         init2Path = join(join(join(alePath('recipes_all'), command), 'commands'), '__init__.py')
         commandPath = join(join(join(alePath('recipes_all'), command), 'commands'), '%s.py' % command)
-        
+
         initContent = """
 #!/usr/bin/env python
 # encoding: utf-8
 """
-        
-        # write the __init__.py's
+
         FILE = open(init1Path, 'w')
         FILE.write(initContent)
         FILE.close()
@@ -36,17 +40,14 @@ class Create(Command):
         FILE.write(initContent)
         FILE.close()
 
-        # write the command skeleton
         FILE = open(commandPath, 'w')
-        FILE.write(
-"""#!/usr/bin/python
+        FILE.write('''#!/usr/bin/python
 # -*- coding: utf-8 -*-
 import os
 from os.path import join as join
 from ale.base import Command
 
-"""
-)
+''')
         FILE.write('class %sCommand(Command):\n' % command)
         FILE.write("    name = '%s'\n" % command)
         FILE.write("""
@@ -63,8 +64,10 @@ from ale.base import Command
         
 """)
         FILE.close()
-        
+
         os.system(os.environ['EDITOR'] + ' ' + commandPath)
-        
+
         print 'Created comand: %s at %s' % (command, commandPath)
         print 'It is currently _not_ recipes_installed.  Install with "ale install <command>"'
+
+
