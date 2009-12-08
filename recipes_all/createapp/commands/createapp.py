@@ -36,6 +36,7 @@ class CreateAppCommand(Command):
                 tarballurl = 'http://github.com/mpstx/appengine_py_%s/tarball/master' % templateName
                 tmpPath = join(join(alePath('tmp'), templateName + '.tar.gz'))
                 download(tarballurl, '%s.tar.gz' % templateName)
+                logging.info("Extracting %s here" % templateName)
                 os.system('tar xzf %s --strip 1 -C .' % tmpPath)
             elif templateName == 'helloworld':
                 logging.info('creating ./helloworld.py')
