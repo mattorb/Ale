@@ -9,6 +9,7 @@ import os
 
 import logging
 
+customStarterApps = ['xmppsendandreply','emailreceive','emailsendui']
 
 class CreateAppCommand(Command):
 
@@ -16,7 +17,7 @@ class CreateAppCommand(Command):
     shorthelp = 'createapp [templatename]  -- create an app from a template'
 
     def execute(self, args=None):
-        validTemplateNames = ['helloworld', 'helloworldwebapp', 'pale']
+        validTemplateNames = ['helloworld', 'helloworldwebapp', 'pale'] + customStarterApps
         if not args:
             print self.shorthelp
             print 'available app templates:'
@@ -31,7 +32,7 @@ class CreateAppCommand(Command):
             if templateName not in validTemplateNames:
                 print 'Unknown app name %s' % args[0]
                 return
-            if templateName in ['xmppsendandreply','emailreceive','emailsendui']:
+            if templateName in customStarterApps:
                 tarballurl = 'http://github.com/mpstx/appengine_py_%s/tarball/master' % templateName
                 tmpPath = join(join(alePath('tmp'), templateName + '.tar.gz'))
                 download(tarballurl, '%s.tar.gz' % templateName)
