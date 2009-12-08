@@ -5,7 +5,7 @@ import os
 import logging
 from os.path import join as join
 from aleconfig import alePath
-from utils import extract, download, relpath
+from utils import extract, download, relpath, getGaeLibs
 from ale.base import Command
 from subprocess import Popen
 
@@ -29,7 +29,9 @@ class PyautotestCommand(Command):
 
         commandwithargs = [command, arg] if arg else [command]
 
-        p = Popen(commandwithargs, env={'PATH':os.environ['PATH'], 'PYTHONPATH': '%s:%s' % (modipydroot, '.')})  # todo: just yield a generator or get all .py files
+        pythonpath = ':'.join([modipydroot] + ['.'] + getGaeLibs())
+
+        p = Popen(commandwithargs, env={'PATH':os.environ['PATH'], 'PYTHONPATH': pythonpath})  # todo: just yield a generator or get all .py files
         sts = os.waitpid(p.pid, 0)[1]
 
         return sts
