@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 from ale.base import Command
 from aleconfig import alePath
-from utils import extract, gitignore
+from utils import extract, gitignore, download
 from os.path import join as join
 import os
 
@@ -17,9 +17,11 @@ class CreateAppCommand(Command):
         if not args:
             print self.shorthelp
             print 'available app templates:'
-            print 'helloworld'
-            print 'helloworldwebapp'
-            print 'pale'
+            print 'helloworld           -- simple helloworld app'
+            print 'helloworldwebapp     -- simple helloworld app using webapp fmk'
+            print 'xmppsendandreply     -- simple xmpp (instant message) send and reply'
+            print 'emailreceive         -- simple e-mail receive example'
+            print 'emailsendui          -- simple e-mail send example'
         else:
             templateName = args[0].lower()
 
@@ -27,7 +29,12 @@ class CreateAppCommand(Command):
                 print 'Unknown app name %s' % args[0]
                 return
             
-            if templateName == 'helloworld':
+            if templateName in ['xmppsendandreply','emailreceive','emailsendui']:
+                tarballurl = 'http://github.com/mpstx/appengine_py_%s/tarball/master' % templateName
+                tmpPath = join(join(alePath('tmp'), templateName + '.tar.gz'))
+                download(tarballurl, '%s.tar.gz' % templateName)
+                os.system('tar xz --strip 1 %s -C .' % tmpPath)
+            elif templateName == 'helloworld':
                     logging.info('creating ./helloworld.py')
                     FILE = open('./helloworld.py', 'w')
                     FILE.write("""
