@@ -19,7 +19,7 @@ class PyautotestCommand(Command):
     tags = 'experimental'
 
     def execute(self, args=None):
-        modipydroot = join(join(join(alePath('recipes_installed'), 'pyautotest'), 'pkgs'), 'ishikawa-modipyd-4ebdf28')
+        modipydroot = join(join(join(alePath('recipes_installed'), 'pyautotest'), 'pkgs'), 'ishikawa-modipyd-1516eeb')
 
         arg = '.' if not args else args[0]
 
@@ -35,10 +35,10 @@ class PyautotestCommand(Command):
         return sts
 
     def install(self, args=None):
-        dlFile = download('http://github.com/ishikawa/modipyd/zipball/release-1-0', 'ishikawa-modipyd.zip')
+        dlFile = download('http://github.com/ishikawa/modipyd/zipball/release-1-1-rc1', 'ishikawa-modipyd.zip')
         extract(dlFile, extractPath)
 
-        os.system('chmod +x %s' % join(join(join(extractPath, 'ishikawa-modipyd-4ebdf28'), 'bin'), 'modipyd'))
-        os.system('chmod +x %s' % join(join(join(extractPath, 'ishikawa-modipyd-4ebdf28'), 'bin'), 'pyautotest'))
+        os.system('chmod +x %s' % join(join(join(extractPath, 'ishikawa-modipyd-1516eeb'), 'bin'), 'modipyd'))
+        os.system('chmod +x %s' % join(join(join(extractPath, 'ishikawa-modipyd-1516eeb'), 'bin'), 'pyautotest'))
 
 
