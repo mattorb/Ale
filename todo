@@ -27,5 +27,5 @@ random ideas:
 * eclipse init to set up a pydev project
 * downorup -- ping homepage on interval to check availability
 * media compressor/bundler
-
+* on deploy (to gae) we could do one of those empty commit w/msg's to git 'Deployed version ___'
 
