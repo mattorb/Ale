@@ -26,6 +26,7 @@ class CreateAppCommand(Command):
             print 'xmppsendandreply     -- simple xmpp (instant message) send and reply'
             print 'emailreceive         -- simple e-mail receive example'
             print 'emailsendui          -- simple e-mail send example'
+            print 'deferredemail        -- simple deferred lib queued e-mail send example'
         else:
             templateName = args[0].lower()
 
