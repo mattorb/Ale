@@ -24,6 +24,7 @@ class NosetestsCommand(Command):
 
         args = [] if not args else args
         args += [
+            '--nologcapture',
             '-m',
             'test',
             '-e',

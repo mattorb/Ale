@@ -22,10 +22,12 @@ Not prioritized yet:
 * allow passing of args to the gae start (dev_appserver)
 * turn off that nose log capturing stuff
 * document? when pulling a project with an .ale submodule, have to do submodule init, then submodule update
+* pyflakes runner - take entire set of files to check (based on changeset) instead of making it rescan itself -- then carry that into other commands
 
 random ideas:
 * eclipse init to set up a pydev project
 * downorup -- ping homepage on interval to check availability
 * media compressor/bundler
 * on deploy (to gae) we could do one of those empty commit w/msg's to git 'Deployed version ___'
+* http://www.st.cs.uni-saarland.de/dd/DD.py  / git bisect
 
