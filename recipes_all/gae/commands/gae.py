@@ -16,11 +16,14 @@ gaeversion = 'google_appengine_1.2.7'
 remotePath = '%s%s' % ('http://googleappengine.googlecode.com/files/', gaefile)
 extractPath = join(join(join(alePath('recipes_installed'), 'gae'), 'pkgs'), gaeversion)
 
+class NoApplicationFoundNoAppYamlHere(Exception):
+    pass
 
 def getAppId():
     if not os.path.exists('app.yaml'):
         logging.error('No app engine application lives here.  (no app.yaml).')
-        return None
+        raise NoApplicationFoundNoAppYamlHere
+
     p = re.compile('application: (.*)')
 
     appyamllines = open('app.yaml').read().split('\n')
@@ -50,6 +53,7 @@ class GaeCommand(Command):
             print '   log           -- open the dashboard (on logs tab) for hosted gae app'
             print '   data          -- open the dashboard (on data tab) for hosted gae app'
             print '   doc           -- open the gae python docs'
+            print '   remoteshell   -- open a shell to the remote, deployed app'
             return
 
         if args and args[0].lower() == 'start':
@@ -76,6 +80,10 @@ class GaeCommand(Command):
                 os.system('open http://appengine.google.com/datastore/explorer?app_id=%s' % appId)
         elif args and args[0].lower() == 'doc':
             os.system('open http://code.google.com/appengine/docs/python/')
+        elif args and args[0].lower() == 'remoteshell':
+            appId = getAppId()
+            logging.info("Starting remoteshell for app: %s.  Careful you are working against your _live_ deployed app! " % appId)
+            os.system('python ' + alePath("recipes_installed/gae/pkgs/google_appengine_1.2.7/google_appengine/") + 'remote_api_shell.py ' + appId)
         else:
             logging.error('unknown command: %s' % args[0])
 
