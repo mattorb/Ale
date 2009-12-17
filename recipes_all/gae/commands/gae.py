@@ -83,7 +83,10 @@ class GaeCommand(Command):
         elif args and args[0].lower() == 'remoteshell':
             appId = getAppId()
             logging.info("Starting remoteshell for app: %s.  Careful you are working against your _live_ deployed app! " % appId)
-            os.system('python ' + alePath("recipes_installed/gae/pkgs/google_appengine_1.2.7/google_appengine/") + 'remote_api_shell.py ' + appId)
+            fullcommandwithargs = ['python', alePath("recipes_installed/gae/pkgs/google_appengine_1.2.7/google_appengine/") + 'remote_api_shell.py ', appId]
+            pythonpath = ['lib']
+
+            p = Popen(fullcommandwithargs, env={'PYTHONPATH': pythonpath, 'PATH': os.environ['PATH']})  # todo: just yield a generator or get all .py files
         else:
             logging.error('unknown command: %s' % args[0])
 
