@@ -187,7 +187,7 @@ def getGaeLibs():
     from ale.core import isCommandInstalled
 
     if isCommandInstalled('gae'):
-        return [os.path.join(alePath('recipes_installed/gae/pkgs/google_appengine_1.2.7/google_appengine/'), d)
+        return [os.path.join(alePath('recipes_installed/gae/pkgs/google_appengine_1.3.0/google_appengine/'), d)
                 for d in ('.', 'lib/django', 'lib/webob', 'lib/yaml/lib', 'lib/antlr3')]
 
     if os.path.exists('/usr/local/google_appine'):
