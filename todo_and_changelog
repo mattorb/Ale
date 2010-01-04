@@ -1,7 +1,7 @@
 ChangeLog:
-* 12/17 - added gae remoteshell command to launch shell into live app 
-*
-
+* before 12/17/09 - initial version many things built in (see 'ale search')
+* 12/17/09 - added gae remoteshell command to launch shell into live app 
+* 1/4/10 - added 'shell' to launch local iPython shell
 
 TODO:
 Prioritized:
@@ -10,7 +10,6 @@ Prioritized:
 Not prioritized yet:
 * when the api and structure stabilizes:
   * test the heck out of thyself
-* local and remote console
 * MD5 check downloads
 * resolve namespace/multicommand ambiguity issues (installing 'test' installs test+coverage)
 * non-osx compatibility?
