@@ -11,8 +11,8 @@ from ale.base import Command
 
 from subprocess import Popen
 
-gaefile = 'google_appengine_1.3.0.zip'
-gaeversion = 'google_appengine_1.3.0'
+gaefile = 'google_appengine_1.3.1.zip'
+gaeversion = 'google_appengine_1.3.1'
 remotePath = '%s%s' % ('http://googleappengine.googlecode.com/files/', gaefile)
 extractPath = join(join(join(alePath('recipes_installed'), 'gae'), 'pkgs'), gaeversion)
 
@@ -83,7 +83,7 @@ class GaeCommand(Command):
         elif args and args[0].lower() == 'remoteshell':
             appId = getAppId()
             logging.info("Starting remoteshell for app: %s.  Careful you are working against your _live_ deployed app! " % appId)
-            fullcommandwithargs = ['python', alePath("recipes_installed/gae/pkgs/google_appengine_1.3.0/google_appengine/") + 'remote_api_shell.py', appId]
+            fullcommandwithargs = ['python', alePath("recipes_installed/gae/pkgs/google_appengine_1.3.1/google_appengine/") + 'remote_api_shell.py', appId]
 
             p = Popen(fullcommandwithargs, env={'PYTHONPATH': os.environ['PYTHONPATH'] + ':lib:.', 'PATH': os.environ['PATH']})  # todo: just yield a generator or get all .py files
             sts = os.waitpid(p.pid, 0)[1]
