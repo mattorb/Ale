@@ -80,9 +80,12 @@ Syntax: ale watcher [command]
 
         ignoreAle = lambda path: '.ale' in path
 
+        def getFilesForType(type):
+            return dirEntries('.', True, ignoreAle, type)
+
         filesForType = {}
         for type in self.watchlist.iterkeys():
-            filesForType[type] = dirEntries('.', True, ignoreAle, type)
+            filesForType[type] = getFilesForType(type)
 
         def getLastTouch(files):
             lasttouch = 0.0
@@ -104,7 +107,7 @@ Syntax: ale watcher [command]
 
         while True:
             for type in self.watchlist.iterkeys():
-                snapshotTouch = getLastTouch(filesForType[type])
+                snapshotTouch = getLastTouch(getFilesForType(type))
                 if snapshotTouch > currenttouch:
                     for command in self.watchlist[type]:
                         self.settitle('running %s' % command)

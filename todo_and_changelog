@@ -5,11 +5,13 @@ ChangeLog:
 
 TODO:
 Prioritized:
-*
 
 Not prioritized yet:
+* watcher doesn't recognize new files appearing.
+* add an option to createapp to name the created app (in app.yaml) with a given name (modify it after pulling down the template)
 * when the api and structure stabilizes:
   * test the heck out of thyself
+* solve the 'I just pulled down a project that has a .ale submodule, how do I install everything that's useful to this project?' opportunity
 * MD5 check downloads
 * resolve namespace/multicommand ambiguity issues (installing 'test' installs test+coverage)
 * non-osx compatibility?
