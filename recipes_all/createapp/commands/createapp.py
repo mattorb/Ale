@@ -9,7 +9,7 @@ import os
 
 import logging
 
-customStarterApps = ['xmppsendandreply','emailreceive','emailsendui']
+customStarterApps = ['xmppsendandreply','emailreceive','emailsendui','deferredemail']
 
 class CreateAppCommand(Command):
 
