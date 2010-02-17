@@ -107,8 +107,11 @@ Syntax: ale watcher [command]
 
         while True:
             for type in self.watchlist.iterkeys():
-                snapshotTouch = getLastTouch(getFilesForType(type))
-                if snapshotTouch > currenttouch:
+                newFilesForType = getFilesForType(type)
+                snapshotTouch = getLastTouch(newFilesForType)
+                
+                if snapshotTouch > currenttouch or set(newFilesForType) != filesForType[type]: # detect deletions as a trigger
+                    filesForType[type] = newFilesForType
                     for command in self.watchlist[type]:
                         self.settitle('running %s' % command)
                         result = executeCommand(command, [])
