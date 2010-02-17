@@ -110,7 +110,7 @@ Syntax: ale watcher [command]
                 newFilesForType = getFilesForType(type)
                 snapshotTouch = getLastTouch(newFilesForType)
                 
-                if snapshotTouch > currenttouch or set(newFilesForType) != filesForType[type]: # detect deletions as a trigger
+                if snapshotTouch > currenttouch or set(newFilesForType) != set(filesForType[type]): # detect deletions as a trigger
                     filesForType[type] = newFilesForType
                     for command in self.watchlist[type]:
                         self.settitle('running %s' % command)
