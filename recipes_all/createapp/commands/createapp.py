@@ -9,7 +9,7 @@ import os
 
 import logging
 
-customStarterApps = ['xmppsendandreply','emailreceive','emailsendui','deferredemail']
+customStarterApps = ['xmppsendandreply','emailreceive','emailsendui','deferredemail','starter_pale']
 
 class CreateAppCommand(Command):
 
@@ -27,6 +27,7 @@ class CreateAppCommand(Command):
             print 'emailreceive         -- simple e-mail receive example'
             print 'emailsendui          -- simple e-mail send example'
             print 'deferredemail        -- simple deferred lib queued e-mail send example'
+            print 'starter_pale         -- a basic project layout with buckets for most things you could want and an import fix built in'
         else:
             templateName = args[0].lower()
 
