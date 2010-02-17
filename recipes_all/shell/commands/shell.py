@@ -36,6 +36,6 @@ class ShellCommand(Command):
         return sts
 
     def install(self, args=None):
-        dlFile = download('http://ipython.scipy.org/dist/ipython-0.10.tar.gz', 'ipython-0.10.tar.gz')
+        dlFile = download('http://ipython.scipy.org/dist/0.10/ipython-0.10.tar.gz', 'ipython-0.10.tar.gz')
         extract(dlFile, extractPath)
         
