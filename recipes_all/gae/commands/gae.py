@@ -47,8 +47,8 @@ class GaeCommand(Command):
         if not args:
             print 'Syntax: ale gae [subcommand]'
             print '   Available subcommands:'
-            print '   start         -- start the local dev_appserver'
-            print '   deploy        -- deploy to the hosted gae app'
+            print '   start         -- start the local dev_appserver and launch browser'
+            print '   deploy        -- deploy to the hosted gae app and launch browser'
             print '   dash          -- open the dashboard for the hosted gae app'
             print '   log           -- open the dashboard (on logs tab) for hosted gae app'
             print '   data          -- open the dashboard (on data tab) for hosted gae app'
@@ -64,8 +64,9 @@ class GaeCommand(Command):
             Popen('open' + ' http://localhost:8080', shell=True)
             sts = os.waitpid(p.pid, 0)[1]
         elif args and args[0].lower() == 'deploy':
-
+            appId = getAppId()
             os.system('%s/google_appengine/appcfg.py update .' % extractPath)
+            os.system('open http://%s.appspot.com' % appId)
         elif args and args[0].lower() == 'dash':
             appId = getAppId()
             if appId:
