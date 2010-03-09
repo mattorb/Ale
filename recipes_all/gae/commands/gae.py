@@ -98,5 +98,7 @@ class GaeCommand(Command):
         os.system('chmod +x %s' % join(join(extractPath, 'google_appengine'), 'appcfg.py'))
         gitignore('*.pyc')
         gitignore('.DS_Store')
+        gitignore('.Trashes')
+        gitignore('.fseventsd')
 
 
